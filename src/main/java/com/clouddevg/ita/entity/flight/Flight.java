@@ -22,8 +22,8 @@ public class Flight {
 
     private int fare;
 
-    @Column(name = "departure_time")
-    private int departureTime;
+    @Column(name = "flight_duration")
+    private int flightDuration;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "origin_spaceport_id")

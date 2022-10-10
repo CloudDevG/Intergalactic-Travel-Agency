@@ -21,7 +21,7 @@ public class FlightDto {
 
     private int fare;
 
-    private int departureTime;
+    private int flightDuration;
 
     private String originSpaceportCode;
 

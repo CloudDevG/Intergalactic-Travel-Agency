@@ -2,8 +2,8 @@ package com.clouddevg.ita.security;
 
 import com.clouddevg.ita.security.api.ApiJWTAuthenticationFilter;
 import com.clouddevg.ita.security.api.ApiJWTAuthorizationFilter;
-import com.clouddevg.ita.security.request.CustomAuthenticationSuccessHandler;
-import com.clouddevg.ita.security.request.CustomLogoutSuccessHandler;
+import com.clouddevg.ita.security.form.CustomAuthenticationSuccessHandler;
+import com.clouddevg.ita.security.form.CustomLogoutSuccessHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;

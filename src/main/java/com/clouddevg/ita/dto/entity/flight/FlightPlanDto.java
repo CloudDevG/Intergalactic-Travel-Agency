@@ -26,7 +26,7 @@ public class FlightPlanDto {
 
     private int fare;
 
-    private int departureTime;
+    private int flightDuration;
 
     private String spacecraftCode;
 

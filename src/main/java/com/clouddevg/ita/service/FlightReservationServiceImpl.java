@@ -168,7 +168,7 @@ public class FlightReservationServiceImpl implements FlightReservationService {
                                     .setDestinationSpaceport(destinationSpaceport)
                                     .setPilot(pilot)
                                     .setSpacecraft(spacecraft)
-                                    .setDepartureTime(flightDto.getDepartureTime())
+                                    .setFlightDuration(flightDto.getFlightDuration())
                                     .setFare(flightDto.getFare());
                             flights.add(FlightMapper.toFlightDto(flightRepository.save(toFlight)));
 
@@ -177,7 +177,7 @@ public class FlightReservationServiceImpl implements FlightReservationService {
                                     .setDestinationSpaceport(originSpaceport)
                                     .setPilot(pilot)
                                     .setSpacecraft(spacecraft)
-                                    .setDepartureTime(flightDto.getDepartureTime())
+                                    .setFlightDuration(flightDto.getFlightDuration())
                                     .setFare(flightDto.getFare());
                             flights.add(FlightMapper.toFlightDto(flightRepository.save(fromFlight)));
                             return flights;

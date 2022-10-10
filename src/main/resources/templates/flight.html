@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout/layout">
+
+<head>
+</head>
+
+<body>
+<!-- ============================================================== -->
+<!-- Container fluid  -->
+<!-- ============================================================== -->
+<div class="container-fluid" layout:fragment="content">
+    <!-- ============================================================== -->
+    <!-- Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    <div class="row page-titles">
+        <div class="col-md-5 col-8 align-self-center">
+            <h3 class="text-themecolor m-b-0 m-t-0">Flight Details</h3>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="home">Home</a></li>
+                <li class="breadcrumb-item active">Flights</li>
+            </ol>
+        </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- Start Page Content -->
+    <!-- ============================================================== -->
+    <!-- Row -->
+    <div class="row">
+        <!-- column -->
+        <div class="col-lg-8 col-md-7">
+            <div class="card">
+                <div class="card-block">
+                    <h4 class="card-title">Flights</h4>
+                    <h6 class="card-subtitle">Pilot Flights</h6>
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Spacecraft Code</th>
+                                <th>Origin Spaceport</th>
+                                <th>Destination Spaceport</th>
+                                <th>Duration</th>
+                                <th>Fare</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <th:block th:each="flight,iterationStatus : ${flights}">
+                                <tr>
+                                    <td th:text=${iterationStatus.count}></td>
+                                    <td th:text=${flight.spacecraftCode}></td>
+                                    <td th:text=${flight.originSpaceportName}></td>
+                                    <td th:text=${flight.destinationSpaceportName}></td>
+                                    <td th:text=${flight.flightDuration}></td>
+                                    <td th:text=${flight.fare}></td>
+                                </tr>
+                            </th:block>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-5">
+            <div class="card">
+                <div class="card-block">
+                    <h3 class="card-title">Add New Flight</h3>
+                    <h6 class="card-subtitle">Enter details</h6>
+                    <form action="#" method="POST" class="form-horizontal form-material" th:action="@{/flight}" th:object="${flightFormData}">
+                        <div class="form-group">
+                            <label for="spacecraftCode" class="col-md-12">Spacecraft Code</label>
+                            <div class="col-md-12">
+                                <select class="form-control" th:field="*{spacecraftCode}" id="spacecraftCode" name="spacecraftCode">
+                                    <option th:each="spacecraft : ${pilot.spacecrafts}"
+                                            th:value="${spacecraft.code}"
+                                            th:text="${spacecraft.code}"
+                                            th:selected="${spacecraft.code == flightFormData.spacecraftCode}">
+                                    </option>
+                                </select>
+                            </div>
+                            <small class="text-danger-padded" th:if="${#fields.hasErrors('spacecraftCode')}" th:errors="*{spacecraftCode}"></small>
+                        </div>
+                        <div class="form-group">
+                            <label for="originSpaceport" th:field="*{originSpaceport}" class="col-md-12">Origin Spaceport</label>
+                            <div class="col-md-12">
+                                <select class="form-control" id="originSpaceport" name="originSpaceport">
+                                    <option th:each="spaceport : ${spaceports}"
+                                            th:value="${spaceport.code}"
+                                            th:text="${spaceport.name}"
+                                            th:selected="${spaceport.code == flightFormData.originSpaceport}">
+                                    </option>
+                                </select>
+                            </div>
+                            <small class="text-danger-padded" th:if="${#fields.hasErrors('originSpaceport')}" th:errors="*{originSpaceport}"></small>
+                        </div>
+                        <div class="form-group">
+                            <label for="destinationSpaceport" th:field="*{destinationSpaceport}" class="col-md-12">Destination Spaceport</label>
+                            <div class="col-md-12">
+                                <select class="form-control" id="destinationSpaceport" name="destinationSpaceport">
+                                    <option th:each="spaceport : ${spaceports}"
+                                            th:value="${spaceport.code}"
+                                            th:text="${spaceport.name}"
+                                            th:selected="${spaceport.code == flightFormData.destinationSpaceport}">
+                                    </option>
+                                </select>
+                            </div>
+                            <small class="text-danger-padded" th:if="${#fields.hasErrors('destinationSpaceport')}" th:errors="*{destinationSpaceport}"></small>
+                        </div>
+                        <div class="form-group">
+                            <label for="flightDuration" class="col-md-12">Flight Duration(min)</label>
+                            <div class="col-md-12">
+                                <input type="text" th:field="*{flightDuration}" class="form-control form-control-line" name="flightDuration" id="flightDuration">
+                            </div>
+                            <small class="text-danger-padded" th:if="${#fields.hasErrors('flightDuration')}" th:errors="*{flightDuration}"></small>
+                        </div>
+                        <div class="form-group">
+                            <label for="flightFare" class="col-md-12">Fare</label>
+                            <div class="col-md-12">
+                                <input type="text" th:field="*{flightFare}" class="form-control form-control-line" name="flightFare" id="flightFare">
+                            </div>
+                            <small class="text-danger-padded" th:if="${#fields.hasErrors('flightFare')}" th:errors="*{flightFare}"></small>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <button class="btn btn-success">Add Flight</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Row -->
+    <!-- ============================================================== -->
+    <!-- End PAge Content -->
+    <!-- ============================================================== -->
+</div>
+<!-- ============================================================== -->
+<!-- End Container fluid  -->
+<!-- ============================================================== -->
+
+</body>
+
+</html>

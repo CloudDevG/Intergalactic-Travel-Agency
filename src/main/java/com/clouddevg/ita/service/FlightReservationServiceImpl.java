@@ -11,11 +11,9 @@ import com.clouddevg.ita.exception.EntityType;
 import com.clouddevg.ita.exception.ExceptionType;
 import com.clouddevg.ita.exception.ITAException;
 import com.clouddevg.ita.repository.flight.*;
-import com.clouddevg.ita.dto.entity.*;
 import com.clouddevg.ita.repository.user.UserRepository;
 import com.clouddevg.ita.util.RandomStringUtils;
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 

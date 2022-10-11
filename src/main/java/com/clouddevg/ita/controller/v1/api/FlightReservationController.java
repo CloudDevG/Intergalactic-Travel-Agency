@@ -24,7 +24,6 @@ import java.util.Optional;
 @RequestMapping("/api/v1/reservation")
 public class FlightReservationController {
 
-
     private final FlightReservationService flightReservationService;
 
     private final UserService userService;

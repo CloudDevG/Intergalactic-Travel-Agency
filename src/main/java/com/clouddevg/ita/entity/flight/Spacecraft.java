@@ -1,6 +1,5 @@
 package com.clouddevg.ita.entity.flight;
 
-
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -13,14 +12,12 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Accessors(chain = true)
 @Entity
-@Table(
-        name = "spacecraft",
+@Table(name = "spacecraft",
         indexes = @Index(
                 name = "idx_spacecraft_code",
                 columnList = "code",
                 unique = true
-        )
-)
+        ))
 public class Spacecraft {
     @Id
     @Column(name = "spacecraft_id")

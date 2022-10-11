@@ -26,20 +26,26 @@ import static com.clouddevg.ita.exception.ExceptionType.ENTITY_NOT_FOUND;
 
 @Component
 public class UserServiceImpl implements UserService {
-    @Autowired
-    private BCryptPasswordEncoder bCryptPasswordEncoder;
 
-    @Autowired
-    private RoleRepository roleRepository;
+    private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
-    @Autowired
-    private UserRepository userRepository;
+    private final RoleRepository roleRepository;
 
-    @Autowired
-    private FlightReservationService flightReservationService;
+    private final UserRepository userRepository;
 
-    @Autowired
-    private ModelMapper modelMapper;
+    private final FlightReservationService flightReservationService;
+
+    private final ModelMapper modelMapper;
+
+    public UserServiceImpl(BCryptPasswordEncoder bCryptPasswordEncoder, RoleRepository roleRepository,
+                           UserRepository userRepository,
+                           FlightReservationService flightReservationService, ModelMapper modelMapper) {
+        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
+        this.roleRepository = roleRepository;
+        this.userRepository = userRepository;
+        this.flightReservationService = flightReservationService;
+        this.modelMapper = modelMapper;
+    }
 
     @Override
     public UserDto signup(UserDto userDto) {

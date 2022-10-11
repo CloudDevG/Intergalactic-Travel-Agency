@@ -13,7 +13,7 @@ public class FlightPlanMapper {
                 .setSpacecraftCode(flightDetails.getSpacecraft().getCode())
                 .setAvailableSeats(flightPlan.getAvailableSeats())
                 .setFare(flightDetails.getFare())
-                .setDepartureTime(flightDetails.getDepartureTime())
+                .setFlightDuration(flightDetails.getFlightDuration())
                 .setOriginSpaceport(flightDetails.getOriginSpaceport().getName())
                 .setDestinationSpaceport(flightDetails.getDestinationSpaceport().getName());
     }

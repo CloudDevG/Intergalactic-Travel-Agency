@@ -25,11 +25,14 @@ import java.util.Set;
 @Controller
 public class DashboardController {
 
-    @Autowired
-    private UserService userService;
+    private final UserService userService;
 
-    @Autowired
-    private FlightReservationService flightReservationService;
+    private final FlightReservationService flightReservationService;
+
+    public DashboardController(UserService userService, FlightReservationService flightReservationService) {
+        this.userService = userService;
+        this.flightReservationService = flightReservationService;
+    }
 
     @GetMapping(value = "/dashboard")
     public ModelAndView dashboard() {

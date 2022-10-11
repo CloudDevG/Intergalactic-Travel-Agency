@@ -24,5 +24,4 @@ public class UserMapper {
                         .map(role -> new ModelMapper().map(role, RoleDto.class))
                         .collect(Collectors.toSet())));
     }
-
 }

@@ -9,7 +9,6 @@ import java.util.Set;
 
 public interface FlightReservationService {
 
-    //Stop related methods
     Set<SpaceportDto> getAllSpaceports();
 
     SpaceportDto getSpaceportByCode(String spaceportCode);

@@ -13,7 +13,7 @@ public class FlightMapper {
                 .setDestinationSpaceportCode(flight.getDestinationSpaceport().getCode())
                 .setDestinationSpaceportName(flight.getDestinationSpaceport().getName())
                 .setSpacecraftCode(flight.getSpacecraft().getCode())
-                .setDepartureTime(flight.getDepartureTime())
+                .setFlightDuration(flight.getFlightDuration())
                 .setFare(flight.getFare());
     }
 }

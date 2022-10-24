@@ -61,6 +61,11 @@ public class FlightReservationServiceImpl implements FlightReservationService {
         this.modelMapper = modelMapper;
     }
 
+    /**
+     * Returns all the available spaceports in the database.
+     *
+     * @return
+     */
     @Override
     public Set<SpaceportDto> getAllSpaceports() {
         return StreamSupport
@@ -69,6 +74,12 @@ public class FlightReservationServiceImpl implements FlightReservationService {
                 .collect(Collectors.toCollection(TreeSet::new));
     }
 
+    /**
+     * Returns the Spaceport details based on spaceport code.
+     *
+     * @param spaceportCode
+     * @return
+     */
     @Override
     public SpaceportDto getSpaceportByCode(String spaceportCode) {
         Optional<Spaceport> spaceport = Optional.ofNullable(spaceportRepository.findByCode(spaceportCode));
@@ -78,6 +89,12 @@ public class FlightReservationServiceImpl implements FlightReservationService {
         throw exception(SPACEPORT, ENTITY_NOT_FOUND, spaceportCode);
     }
 
+    /**
+     * Fetch PilotDto from userDto
+     *
+     * @param userDto
+     * @return
+     */
     @Override
     public PilotDto getPilot(UserDto userDto) {
         User user = getUser(userDto.getEmail());
@@ -91,6 +108,12 @@ public class FlightReservationServiceImpl implements FlightReservationService {
         throw exception(USER, ENTITY_NOT_FOUND, userDto.getEmail());
     }
 
+    /**
+     * Register a new pilot from the Admin signup flow
+     *
+     * @param pilotDto
+     * @return
+     */
     @Override
     public PilotDto addPilot(PilotDto pilotDto) {
         User admin = getUser(pilotDto.getOwner().getEmail());
@@ -110,6 +133,13 @@ public class FlightReservationServiceImpl implements FlightReservationService {
         throw exception(USER, ENTITY_NOT_FOUND, pilotDto.getOwner().getEmail());
     }
 
+    /**
+     * Updates the pilot with given Spacecraft information
+     *
+     * @param pilotDto
+     * @param spacecraftDto
+     * @return
+     */
     @Transactional
     public PilotDto updatePilot(PilotDto pilotDto, SpacecraftDto spacecraftDto) {
         Pilot pilot = getPilot(pilotDto.getCode());
@@ -139,6 +169,12 @@ public class FlightReservationServiceImpl implements FlightReservationService {
         throw exceptionWithId(PILOT, ENTITY_NOT_FOUND, 2, pilotDto.getOwner().getEmail());
     }
 
+    /**
+     * Returns flight details based on flight_id
+     *
+     * @param flightID
+     * @return
+     */
     @Override
     public FlightDto getFlightById(Long flightID) {
         Optional<Flight> flight = flightRepository.findById(flightID);
@@ -148,6 +184,12 @@ public class FlightReservationServiceImpl implements FlightReservationService {
         throw exception(FLIGHT, ENTITY_NOT_FOUND, flightID.toString());
     }
 
+    /**
+     * Creates two new Flights with the given information in flightDto object
+     *
+     * @param flightDto
+     * @return
+     */
     @Override
     @Transactional
     public List<FlightDto> addFlight(FlightDto flightDto) {
@@ -191,6 +233,12 @@ public class FlightReservationServiceImpl implements FlightReservationService {
         throw exception(SPACEPORT, ENTITY_NOT_FOUND, flightDto.getOriginSpaceportCode());
     }
 
+    /**
+     * Fetch all the flights for a given pilot
+     *
+     * @param pilotCode
+     * @return
+     */
     @Override
     public List<FlightDto> getPilotFlights(String pilotCode) {
         Pilot pilot = getPilot(pilotCode);
@@ -207,6 +255,13 @@ public class FlightReservationServiceImpl implements FlightReservationService {
         throw exception(PILOT, ENTITY_NOT_FOUND, pilotCode);
     }
 
+    /**
+     * Returns a list of flights between given origin and destination spaceports.
+     *
+     * @param originSpaceportCode
+     * @param destinationSpaceportCode
+     * @return
+     */
     @Override
     public List<FlightDto> getAvailableFlightsBetweenSpaceports(String originSpaceportCode, String destinationSpaceportCode) {
         List<Flight> availableFlights = findFlightsBetweenSpaceports(originSpaceportCode, destinationSpaceportCode);
@@ -219,6 +274,16 @@ public class FlightReservationServiceImpl implements FlightReservationService {
         return Collections.emptyList();
     }
 
+    /**
+     * Function to locate all the flights between origin and destination stops and then
+     * filter the results as per the given date based on data present in
+     * flight plan collection.
+     *
+     * @param originSpaceportCode
+     * @param destinationSpaceportCode
+     * @param flightDate
+     * @return list of flightplans on given date
+     */
     @Override
     public List<FlightPlanDto> getAvailableFlightPlans(String originSpaceportCode, String destinationSpaceportCode, String flightDate) {
         List<Flight> availableFlights = findFlightsBetweenSpaceports(originSpaceportCode, destinationSpaceportCode);
@@ -232,6 +297,16 @@ public class FlightReservationServiceImpl implements FlightReservationService {
         return Collections.emptyList();
     }
 
+    /**
+     * Returns FlightPlanDto based on flight details and flight date,
+     * optionally creates a plan if its not found and if the createScheduleForFlightPlan
+     * parameter is set to true.
+     *
+     * @param flightDto
+     * @param flightDate
+     * @param createScheduleForFlightPlan
+     * @return
+     */
     @Override
     public FlightPlanDto getFlightPlan(FlightDto flightDto, String flightDate, boolean createScheduleForFlightPlan) {
         Optional<Flight> flight = flightRepository.findById(flightDto.getId());
@@ -254,6 +329,13 @@ public class FlightReservationServiceImpl implements FlightReservationService {
         throw exception(FLIGHT, ENTITY_NOT_FOUND, flightDto.getId().toString());
     }
 
+    /**
+     * Method to book ticket for a given flight plan
+     *
+     * @param flightPlanDto
+     * @param userDto
+     * @return
+     */
     @Override
     @Transactional
     public TicketDto bookTicket(FlightPlanDto flightPlanDto, UserDto userDto) {
@@ -277,7 +359,13 @@ public class FlightReservationServiceImpl implements FlightReservationService {
         throw exception(USER, ENTITY_NOT_FOUND, userDto.getEmail());
     }
 
-
+    /**
+     * Search for all Flights between origin and destination spaceports
+     *
+     * @param originSpaceportCode
+     * @param destinationSpaceportCode
+     * @return
+     */
     private List<Flight> findFlightsBetweenSpaceports(String originSpaceportCode, String destinationSpaceportCode) {
         Optional<Spaceport> originSpaceport = Optional
                 .ofNullable(spaceportRepository.findByCode(originSpaceportCode));
@@ -296,26 +384,66 @@ public class FlightReservationServiceImpl implements FlightReservationService {
         throw exception(SPACEPORT, ENTITY_NOT_FOUND, originSpaceportCode);
     }
 
+    /**
+     * Fetch user from UserDto
+     *
+     * @param email
+     * @return
+     */
     private User getUser(String email) {
         return userRepository.findByEmail(email);
     }
 
+    /**
+     * Fetch Spaceport from spaceportCode
+     *
+     * @param spaceportCode
+     * @return
+     */
     private Spaceport getSpaceport(String spaceportCode) {
         return spaceportRepository.findByCode(spaceportCode);
     }
 
+    /**
+     * Fetch Spacecraft from spacecraftCode, since it is unique we don't have issues of finding duplicate Spacecrafts
+     *
+     * @param spacecraftCode
+     * @return
+     */
     private Spacecraft getSpacecraft(String spacecraftCode) {
         return spacecraftRepository.findByCode(spacecraftCode);
     }
 
+    /**
+     * Fetch Pilot from pilotCode
+     *
+     * @param pilotCode
+     * @return
+     */
     private Pilot getPilot(String pilotCode) {
         return pilotRepository.findByCode(pilotCode);
     }
 
+    /**
+     * Returns a new RuntimeException
+     *
+     * @param entityType
+     * @param exceptionType
+     * @param args
+     * @return
+     */
     private RuntimeException exception(EntityType entityType, ExceptionType exceptionType, String... args) {
         return ITAException.throwException(entityType, exceptionType, args);
     }
 
+    /**
+     * Returns a new RuntimeException
+     *
+     * @param entityType
+     * @param exceptionType
+     * @param args
+     * @return
+     */
     private RuntimeException exceptionWithId(EntityType entityType, ExceptionType exceptionType, Integer id, String... args) {
         return ITAException.throwExceptionWithId(entityType, exceptionType, id, args);
     }

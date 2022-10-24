@@ -66,6 +66,12 @@ public class AdminController {
         return new ModelAndView("login");
     }
 
+    /**
+     * Register a new user in the database
+     *
+     * @param adminSignupRequest
+     * @return
+     */
     private UserDto registerAdmin(@Valid AdminSignupFormCommand adminSignupRequest) {
         UserDto userDto = new UserDto()
                 .setEmail(adminSignupRequest.getEmail())

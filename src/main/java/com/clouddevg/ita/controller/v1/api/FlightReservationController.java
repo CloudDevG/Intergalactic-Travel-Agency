@@ -10,6 +10,9 @@ import com.clouddevg.ita.dto.response.Response;
 import com.clouddevg.ita.service.FlightReservationService;
 import com.clouddevg.ita.service.UserService;
 import com.clouddevg.ita.util.DateUtils;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.Authorization;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -22,6 +25,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/v1/reservation")
+@Api(value = "ita-application", description = "Operations pertaining to pilot management and ticket booking in the ITA application")
 public class FlightReservationController {
 
     private final FlightReservationService flightReservationService;
@@ -34,6 +38,7 @@ public class FlightReservationController {
     }
 
     @GetMapping("/spaceports")
+    @ApiOperation(value = "", authorizations = {@Authorization(value = "apiKey")})
     public Response getAllSpaceports() {
         return Response
                 .ok()
@@ -41,6 +46,7 @@ public class FlightReservationController {
     }
 
     @GetMapping("/flightsbyspaceports")
+    @ApiOperation(value = "", authorizations = {@Authorization(value = "apiKey")})
     public Response getFlightsBySpaceports(@RequestBody @Valid GetFlightPlansRequest getFlightPlansRequest) {
         List<FlightDto> flightDtos = flightReservationService.getAvailableFlightsBetweenSpaceports(
                 getFlightPlansRequest.getOriginSpaceport(),
@@ -53,6 +59,7 @@ public class FlightReservationController {
     }
 
     @GetMapping("/flightplans")
+    @ApiOperation(value = "", authorizations = {@Authorization(value = "apiKey")})
     public Response getFlightPlans(@RequestBody @Valid GetFlightPlansRequest getFlightPlansRequest) {
         List<FlightPlanDto> flightPlanDtos = flightReservationService.getAvailableFlightPlans(
                 getFlightPlansRequest.getOriginSpaceport(),
@@ -66,6 +73,7 @@ public class FlightReservationController {
     }
 
     @PostMapping("/bookticket")
+    @ApiOperation(value = "", authorizations = {@Authorization(value = "apiKey")})
     public Response bookTicket(@RequestBody @Valid BookTicketRequest bookTicketRequest) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String email = (String) auth.getPrincipal();

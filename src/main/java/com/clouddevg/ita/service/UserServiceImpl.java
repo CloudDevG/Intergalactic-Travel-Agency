@@ -69,6 +69,12 @@ public class UserServiceImpl implements UserService {
         throw exception(USER, DUPLICATE_ENTITY, userDto.getEmail());
     }
 
+    /**
+     * Search an existing user
+     *
+     * @param email
+     * @return
+     */
     @Transactional
     public UserDto findUserByEmail(String email) {
         Optional<User> user = Optional.ofNullable(userRepository.findByEmail(email));
@@ -78,6 +84,12 @@ public class UserServiceImpl implements UserService {
         throw exception(USER, ENTITY_NOT_FOUND, email);
     }
 
+    /**
+     * Update User Profile
+     *
+     * @param userDto
+     * @return
+     */
     @Override
     public UserDto updateProfile(UserDto userDto) {
         Optional<User> user = Optional.ofNullable(userRepository.findByEmail(userDto.getEmail()));
@@ -91,6 +103,13 @@ public class UserServiceImpl implements UserService {
         throw exception(USER, ENTITY_NOT_FOUND, userDto.getEmail());
     }
 
+    /**
+     * Change Password
+     *
+     * @param userDto
+     * @param newPassword
+     * @return
+     */
     @Override
     public UserDto changePassword(UserDto userDto, String newPassword) {
         Optional<User> user = Optional.ofNullable(userRepository.findByEmail(userDto.getEmail()));
@@ -102,6 +121,14 @@ public class UserServiceImpl implements UserService {
         throw exception(USER, ENTITY_NOT_FOUND, userDto.getEmail());
     }
 
+    /**
+     * Returns a new RuntimeException
+     *
+     * @param entityType
+     * @param exceptionType
+     * @param args
+     * @return
+     */
     private RuntimeException exception(EntityType entityType, ExceptionType exceptionType, String... args) {
         return ITAException.throwException(entityType, exceptionType, args);
     }

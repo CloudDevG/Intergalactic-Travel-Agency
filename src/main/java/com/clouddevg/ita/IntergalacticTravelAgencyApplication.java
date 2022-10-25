@@ -51,7 +51,7 @@ public class IntergalacticTravelAgencyApplication {
             if (admin == null) {
                 admin = new User()
                         .setEmail("admin@gmail.com")
-                        .setPassword("$2a$10$7PtcjEnWb/ZkgyXyxY1/Iei2dGgGQUbqIIll/dt.qJ8l8nQBWMbYO") // "123456"
+                        .setPassword("$2a$10$Wfvx5dQ3LpvnH/jAfkiWeuL/K43dEN2xCE53eSqz1lW5K17U30vkm") // "123456"
                         .setFirstName("Noelle")
                         .setLastName("Doe")
                         .setMobileNumber("9425094250")
@@ -64,7 +64,7 @@ public class IntergalacticTravelAgencyApplication {
             if (passenger == null) {
                 passenger = new User()
                         .setEmail("passenger@gmail.com")
-                        .setPassword("$2a$10$7PtcjEnWb/ZkgyXyxY1/Iei2dGgGQUbqIIll/dt.qJ8l8nQBWMbYO") // "123456"
+                        .setPassword("$2a$10$Wfvx5dQ3LpvnH/jAfkiWeuL/K43dEN2xCE53eSqz1lW5K17U30vkm") // "123456"
                         .setFirstName("Luke")
                         .setLastName("Skywalker")
                         .setMobileNumber("8000110008")

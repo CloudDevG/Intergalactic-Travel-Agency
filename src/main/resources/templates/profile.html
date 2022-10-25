@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout/layout">
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout/layout.html}>
 
 <head>
 </head>
@@ -38,7 +38,7 @@
                     <center class="m-t-30"><img src="/dashboard/assets/images/users/5.jpg" class="img-circle"
                                                 width="150"/>
                         <h4 class="card-title m-t-10" th:inline="text">[[${name}]]</h4>
-                        <h6 class="card-subtitle">Agency Admin</h6>
+                        <h6 class="card-subtitle">Pilot Admin</h6>
                         <div class="row text-center justify-content-md-center">
                             <div class="col-4"><a href="javascript:void(0)" class="link"><i class="icon-people"></i>
                                 <font class="font-medium">254</font></a></div>

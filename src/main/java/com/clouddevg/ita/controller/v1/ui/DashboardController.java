@@ -82,8 +82,8 @@ public class DashboardController {
         ModelAndView modelAndView = new ModelAndView("spacecraft");
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         UserDto userDto = userService.findUserByEmail(auth.getName());
-        PilotDto agencyDto = flightReservationService.getPilot(userDto);
-        modelAndView.addObject("pilot", agencyDto);
+        PilotDto pilotDto = flightReservationService.getPilot(userDto);
+        modelAndView.addObject("pilot", pilotDto);
         modelAndView.addObject("spacecraftFormData", new SpacecraftFormCommand());
         modelAndView.addObject("userName", userDto.getFullName());
         return modelAndView;
@@ -91,7 +91,7 @@ public class DashboardController {
 
     @PostMapping(value = "/spacecraft")
     public ModelAndView addNewSpacecraft(@Valid @ModelAttribute("spacecraftFormData") SpacecraftFormCommand spacecraftFormCommand, BindingResult bindingResult) {
-        ModelAndView modelAndView = new ModelAndView("bus");
+        ModelAndView modelAndView = new ModelAndView("spacecraft");
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         UserDto userDto = userService.findUserByEmail(auth.getName());
         PilotDto pilotDto = flightReservationService.getPilot(userDto);
@@ -131,7 +131,7 @@ public class DashboardController {
 
     @PostMapping(value = "/flight")
     public ModelAndView addNewFlight(@Valid @ModelAttribute("flightFormData") FlightFormCommand flightFormCommand, BindingResult bindingResult) {
-        ModelAndView modelAndView = new ModelAndView("trip");
+        ModelAndView modelAndView = new ModelAndView("flight");
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         UserDto userDto = userService.findUserByEmail(auth.getName());
         PilotDto pilotDto = flightReservationService.getPilot(userDto);

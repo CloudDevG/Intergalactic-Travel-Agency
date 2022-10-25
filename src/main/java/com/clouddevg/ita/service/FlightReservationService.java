@@ -13,14 +13,14 @@ public interface FlightReservationService {
 
     SpaceportDto getSpaceportByCode(String spaceportCode);
 
-    //Agency related methods
+    //Pilot related methods
     PilotDto getPilot(UserDto userDto);
 
     PilotDto addPilot(PilotDto pilotDto);
 
     PilotDto updatePilot(PilotDto pilotDto, SpacecraftDto spacecraftDto);
 
-    //Trip related methods
+    //Flight related methods
     FlightDto getFlightById(Long flightID);
 
     List<FlightDto> addFlight(FlightDto flightDto);
@@ -29,7 +29,7 @@ public interface FlightReservationService {
 
     List<FlightDto> getAvailableFlightsBetweenSpaceports(String originSpaceportCode, String destinationSpaceportCode);
 
-    //Trips Schedule related methods
+    //Flight Plan related methods
     List<FlightPlanDto> getAvailableFlightPlans(String originSpaceportCode, String destinationSpaceportCode, String flightDate);
 
     FlightPlanDto getFlightPlan(FlightDto flightDto, String flightDate, boolean createScheduleForFlightPlan);

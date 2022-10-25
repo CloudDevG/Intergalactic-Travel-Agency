@@ -1,5 +1,6 @@
 package com.clouddevg.ita.config;
 
+import nz.net.ultraq.thymeleaf.layoutdialect.LayoutDialect;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.NamingConventions;
 import org.springframework.beans.BeansException;
@@ -121,6 +122,12 @@ public class ITAConfiguration {
     private ApiKey apiKey() {
         return new ApiKey("apiKey", "Authorization", "header");
     }
+
+    @Bean
+    public LayoutDialect layoutDialect() {
+        return new LayoutDialect();
+    }
+
 
 
 }

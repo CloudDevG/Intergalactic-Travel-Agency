@@ -85,7 +85,7 @@ public class AdminController {
                 .setName(adminSignupRequest.getPilotName())
                 .setDetails(adminSignupRequest.getPilotDetails())
                 .setOwner(admin);
-        flightReservationService.addPilot(pilotDto); //add the agency for this admin
+        flightReservationService.addPilot(pilotDto); //add the pilot for this admin
         return admin;
     }
 }

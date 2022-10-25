@@ -20,7 +20,7 @@ import java.util.Date;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class BookTicketRequest {
     @NotEmpty(message = "{constraints.NotEmpty.message}")
-    private Long flightID;
+    private String flightID;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     @NotNull(message = "{constraints.NotEmpty.message}")

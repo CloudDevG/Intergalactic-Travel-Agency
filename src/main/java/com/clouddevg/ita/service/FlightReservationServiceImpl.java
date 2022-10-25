@@ -70,7 +70,7 @@ public class FlightReservationServiceImpl implements FlightReservationService {
     public Set<SpaceportDto> getAllSpaceports() {
         return StreamSupport
                 .stream(spaceportRepository.findAll().spliterator(), false)
-                .map(stop -> modelMapper.map(stop, SpaceportDto.class))
+                .map(spaceport -> modelMapper.map(spaceport, SpaceportDto.class))
                 .collect(Collectors.toCollection(TreeSet::new));
     }
 
@@ -275,7 +275,7 @@ public class FlightReservationServiceImpl implements FlightReservationService {
     }
 
     /**
-     * Function to locate all the flights between origin and destination stops and then
+     * Function to locate all the flights between origin and destination spaceports and then
      * filter the results as per the given date based on data present in
      * flight plan collection.
      *

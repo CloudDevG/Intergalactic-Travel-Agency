@@ -1,7 +1,7 @@
 package com.clouddevg.ita.security;
 
 public interface SecurityConstants {
-    String SECRET = "SecretKeyToGenJWTs";
+    String SECRET = "SuperSecretKeyToGenJsonWebTokensForTheIntergalacticTravelAgencyRestfulWebServiceApplicationForSpringSecurityThankYouVeryMuchForYourInterest";
     String TOKEN_PREFIX = "Bearer ";
     String HEADER_STRING = "Authorization";
     String SIGN_UP_URL = "/users/sign-up";

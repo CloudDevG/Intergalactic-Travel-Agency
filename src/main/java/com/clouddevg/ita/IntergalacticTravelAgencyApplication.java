@@ -59,7 +59,7 @@ public class IntergalacticTravelAgencyApplication {
                 userRepository.save(admin);
             }
 
-            //Create a passenger user
+            //Create a Passenger user
             User passenger = userRepository.findByEmail("passenger@gmail.com");
             if (passenger == null) {
                 passenger = new User()
@@ -72,7 +72,7 @@ public class IntergalacticTravelAgencyApplication {
                 userRepository.save(passenger);
             }
 
-            //Create four spaceports
+            //Create four Spaceports
             Spaceport spaceportA = spaceportRepository.findByCode("SW001");
             if (spaceportA == null) {
                 spaceportA = new Spaceport()
@@ -120,7 +120,7 @@ public class IntergalacticTravelAgencyApplication {
                 pilotRepository.save(pilotA);
             }
 
-            //Create a spacecraft
+            //Create a Spacecraft
             Spacecraft spacecraftA = spacecraftRepository.findByCode("PILOT-A-MF");
             if (spacecraftA == null) {
                 spacecraftA = new Spacecraft()
@@ -151,7 +151,7 @@ public class IntergalacticTravelAgencyApplication {
                 flightRepository.save(flight);
             }
 
-            //Create a flight plan
+            //Create a Flight Plan
             FlightPlan flightPlan = flightPlanRepository.findByFlightDetailAndFlightDate(flight, DateUtils.todayStr());
             if (flightPlan == null) {
                 flightPlan = new FlightPlan()

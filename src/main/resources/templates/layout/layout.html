@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 
-<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout">
-
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -55,35 +56,35 @@
     <script src="/dashboard/assets/plugins/c3-master/c3.min.js"></script>
     <!-- Chart JS -->
     <script src="/dashboard/html/js/dashboard1.js"></script>
-    <title>ITA</title>
+    <title>ITA - Dashboard</title>
 </head>
 
 <body class="fix-header fix-sidebar card-no-border">
-<!-- ============================================================== -->
-<!-- Preloader - style you can find in spinners.css -->
-<!-- ============================================================== -->
-<div class="preloader">
-    <svg class="circular" viewBox="25 25 50 50">
-        <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10"/>
-    </svg>
-</div>
-<!-- ============================================================== -->
-<!-- Main wrapper - style you can find in pages.scss -->
-<!-- ============================================================== -->
-<div id="main-wrapper">
-    <!-- Topbar header - style you can find in pages.scss -->
-    <div th:replace="fragments/navigation :: navigation"></div>
-    <!-- Left Sidebar - style you can find in sidebar.scss  -->
-    <div th:replace="fragments/sidebar :: sidebar"></div>
-    <!-- Page wrapper  -->
-    <div class="page-wrapper" id="mainContent">
-        <div layout:fragment="content"></div>
-        <div th:replace="fragments/footer :: footer"></div>
+    <!-- ============================================================== -->
+    <!-- Preloader - style you can find in spinners.css -->
+    <!-- ============================================================== -->
+    <div class="preloader">
+        <svg class="circular" viewBox="25 25 50 50">
+            <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10"/>
+        </svg>
     </div>
-</div>
-<!-- ============================================================== -->
-<!-- End Wrapper -->
-<!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- Main wrapper - style you can find in pages.scss -->
+    <!-- ============================================================== -->
+    <div id="main-wrapper">
+        <!-- Topbar header - style you can find in pages.scss -->
+        <div th:replace="fragments/navigation :: navigation"></div>
+        <!-- Left Sidebar - style you can find in sidebar.scss  -->
+        <div th:replace="fragments/sidebar :: sidebar"></div>
+        <!-- Page wrapper  -->
+        <div class="page-wrapper" id="mainContent">
+            <div layout:fragment="content"></div>
+            <footer class="footer"> © 2022 Intergalactic Travel Agency Application </footer>
+        </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Wrapper -->
+    <!-- ============================================================== -->
 </body>
 
 </html>

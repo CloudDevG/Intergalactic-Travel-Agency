@@ -64,7 +64,7 @@
         <div class="col-lg-4 col-md-5">
             <div class="card">
                 <div class="card-block">
-                    <h3 class="card-title">Add New Flight</h3>
+                    <h3 class="card-title">Add New Round-Trip Flight</h3>
                     <h6 class="card-subtitle">Enter details</h6>
                     <form action="#" method="POST" class="form-horizontal form-material" th:action="@{/flight}" th:object="${flightFormData}">
                         <div class="form-group">
@@ -107,7 +107,7 @@
                             <small class="text-danger-padded" th:if="${#fields.hasErrors('destinationSpaceport')}" th:errors="*{destinationSpaceport}"></small>
                         </div>
                         <div class="form-group">
-                            <label for="flightDuration" class="col-md-12">Flight Duration(min)</label>
+                            <label for="flightDuration" class="col-md-12">Flight Duration(hrs)</label>
                             <div class="col-md-12">
                                 <input type="text" th:field="*{flightDuration}" class="form-control form-control-line" name="flightDuration" id="flightDuration">
                             </div>

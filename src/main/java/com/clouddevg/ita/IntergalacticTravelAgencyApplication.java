@@ -105,7 +105,7 @@ public class IntergalacticTravelAgencyApplication {
                 spaceportD = new Spaceport()
                         .setName("Kashyyyk")
                         .setDetail("Home of Chewbacca & The Wookies")
-                        .setCode("STPD");
+                        .setCode("SW004");
                 spaceportRepository.save(spaceportD);
             }
 
@@ -126,7 +126,8 @@ public class IntergalacticTravelAgencyApplication {
                 spacecraftA = new Spacecraft()
                         .setCode("PILOT-A-MF")
                         .setPilot(pilotA)
-                        .setCapacity(60);
+                        .setCapacity(60)
+                        .setMake("Millennium Falcon");
                 spacecraftRepository.save(spacecraftA);
             }
 

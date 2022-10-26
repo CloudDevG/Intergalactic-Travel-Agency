@@ -44,6 +44,7 @@
                             <tr>
                                 <th>#</th>
                                 <th>Spacecraft Code</th>
+                                <th>Make/Model</th>
                                 <th>Capacity</th>
                             </tr>
                             </thead>
@@ -52,6 +53,7 @@
                                 <tr>
                                     <td th:text=${iterationStatus.count}></td>
                                     <td th:text=${spacecraft.code}></td>
+                                    <td th:text=${spacecraft.make}></td>
                                     <td th:text=${spacecraft.capacity}></td>
                                 </tr>
                             </th:block>

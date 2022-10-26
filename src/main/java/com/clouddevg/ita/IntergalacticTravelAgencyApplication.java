@@ -121,10 +121,10 @@ public class IntergalacticTravelAgencyApplication {
             }
 
             //Create a Spacecraft
-            Spacecraft spacecraftA = spacecraftRepository.findByCode("PILOT-A-MF");
+            Spacecraft spacecraftA = spacecraftRepository.findByCode("P-A-MF");
             if (spacecraftA == null) {
                 spacecraftA = new Spacecraft()
-                        .setCode("PILOT-A-MF")
+                        .setCode("P-A-MF")
                         .setPilot(pilotA)
                         .setCapacity(60)
                         .setMake("Millennium Falcon");

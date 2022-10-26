@@ -23,7 +23,9 @@ public interface FlightReservationService {
     //Flight related methods
     FlightDto getFlightById(Long flightID);
 
-    List<FlightDto> addFlight(FlightDto flightDto);
+    FlightDto addFlight(FlightDto flightDto);
+
+    List<FlightDto> addRoundTripFlight(FlightDto flightDto);
 
     List<FlightDto> getPilotFlights(String pilotCode);
 

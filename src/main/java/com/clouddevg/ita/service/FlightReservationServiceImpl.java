@@ -185,14 +185,53 @@ public class FlightReservationServiceImpl implements FlightReservationService {
     }
 
     /**
-     * Creates two new Flights with the given information in flightDto object
+     * Creates single Flight with the given information in flightDto object
      *
      * @param flightDto
      * @return
      */
     @Override
     @Transactional
-    public List<FlightDto> addFlight(FlightDto flightDto) {
+    public FlightDto addFlight(FlightDto flightDto) {
+        Spaceport originSpaceport = getSpaceport(flightDto.getOriginSpaceportCode());
+        if (originSpaceport != null) {
+            Spaceport destinationSpaceport = getSpaceport(flightDto.getDestinationSpaceportCode());
+            if (destinationSpaceport != null) {
+                if (!originSpaceport.getCode().equalsIgnoreCase(destinationSpaceport.getCode())) {
+                    Pilot pilot = getPilot(flightDto.getPilotCode());
+                    if (pilot != null) {
+                        Spacecraft spacecraft = getSpacecraft(flightDto.getSpacecraftCode());
+                        if (spacecraft != null) {
+                            Flight singleFlight = new Flight()
+                                    .setOriginSpaceport(originSpaceport)
+                                    .setDestinationSpaceport(destinationSpaceport)
+                                    .setPilot(pilot)
+                                    .setSpacecraft(spacecraft)
+                                    .setFlightDuration(flightDto.getFlightDuration())
+                                    .setFare(flightDto.getFare());
+                            FlightDto flight = FlightMapper.toFlightDto(flightRepository.save(singleFlight));
+                            return flight;
+                        }
+                        throw exception(SPACECRAFT, ENTITY_NOT_FOUND, flightDto.getSpacecraftCode());
+                    }
+                    throw exception(PILOT, ENTITY_NOT_FOUND, flightDto.getPilotCode());
+                }
+                throw exception(FLIGHT, ENTITY_EXCEPTION, "");
+            }
+            throw exception(SPACEPORT, ENTITY_NOT_FOUND, flightDto.getDestinationSpaceportCode());
+        }
+        throw exception(SPACEPORT, ENTITY_NOT_FOUND, flightDto.getOriginSpaceportCode());
+    }
+
+    /**
+     * Creates Round-Trip Flight with the given information in flightDto object
+     *
+     * @param flightDto
+     * @return
+     */
+    @Override
+    @Transactional
+    public List<FlightDto> addRoundTripFlight(FlightDto flightDto) {
         Spaceport originSpaceport = getSpaceport(flightDto.getOriginSpaceportCode());
         if (originSpaceport != null) {
             Spaceport destinationSpaceport = getSpaceport(flightDto.getDestinationSpaceportCode());

@@ -64,7 +64,7 @@
         <div class="col-lg-4 col-md-5">
             <div class="card">
                 <div class="card-block">
-                    <h3 class="card-title">Add New Round-Trip Flight</h3>
+                    <h3 class="card-title">Add New Flight</h3>
                     <h6 class="card-subtitle">Enter details</h6>
                     <form action="#" method="POST" class="form-horizontal form-material" th:action="@{/flight}" th:object="${flightFormData}">
                         <div class="form-group">
@@ -121,6 +121,16 @@
                             <small class="text-danger-padded" th:if="${#fields.hasErrors('flightFare')}" th:errors="*{flightFare}"></small>
                         </div>
                         <div class="form-group">
+                            <label class="col-md-12">Round-Trip?</label>
+                            <div class="col-md-12">
+                                <select class="form-control" th:field="*{roundTrip}">
+                                    <option th:value="0" th:text="No"></option>
+                                    <option th:value="1" th:text="Yes"></option>
+                                </select>
+                            </div>
+                            <small class="text-danger-padded" th:if="${#fields.hasErrors('roundTrip')}" th:errors="*{roundTrip}"></small>
+                        </div>
+                        <div class="form-group">
                             <div class="col-sm-12">
                                 <button class="btn btn-success">Add Flight</button>
                             </div>
@@ -132,13 +142,11 @@
     </div>
     <!-- Row -->
     <!-- ============================================================== -->
-    <!-- End PAge Content -->
+    <!-- End Page Content -->
     <!-- ============================================================== -->
 </div>
 <!-- ============================================================== -->
-<!-- End Container fluid  -->
+<!-- End Container Fluid  -->
 <!-- ============================================================== -->
-
 </body>
-
 </html>

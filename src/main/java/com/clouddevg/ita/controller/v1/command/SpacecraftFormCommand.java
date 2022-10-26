@@ -14,9 +14,9 @@ public class SpacecraftFormCommand {
     @Size(min = 4, max = 8)
     private String code;
 
-    @Min(value = 10, message = "Cannot enroll a spacecraft with capacity smaller than 10")
-    private int capacity;
-
     @NotBlank
     private String make;
+
+    @Min(value = 2, message = "Cannot enroll a spacecraft with capacity smaller than 2")
+    private int capacity;
 }

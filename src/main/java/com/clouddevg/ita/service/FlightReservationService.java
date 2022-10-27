@@ -34,7 +34,7 @@ public interface FlightReservationService {
     //Flight Plan related methods
     List<FlightPlanDto> getAvailableFlightPlans(String originSpaceportCode, String destinationSpaceportCode, String flightDate);
 
-    FlightPlanDto getFlightPlan(FlightDto flightDto, String flightDate, boolean createScheduleForFlightPlan);
+    FlightPlanDto getFlightPlan(FlightDto flightDto, String flightDate, boolean createScheduleForFlight);
 
     //Ticket related method
     TicketDto bookTicket(FlightPlanDto flightPlanDto, UserDto passenger);

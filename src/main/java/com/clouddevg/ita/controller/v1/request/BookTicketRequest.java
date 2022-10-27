@@ -9,9 +9,9 @@ import lombok.experimental.Accessors;
 
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
-import java.util.Date;
+import java.time.LocalDate;
+
 
 @Getter
 @Setter
@@ -19,11 +19,11 @@ import java.util.Date;
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class BookTicketRequest {
-    @NotEmpty(message = "{constraints.NotEmpty.message}")
-    private String flightID;
+    @NotNull(message = "{constraints.NotNull.message}")
+    private Long flightID;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     @NotNull(message = "{constraints.NotEmpty.message}")
     @Temporal(TemporalType.DATE)
-    private Date flightDate;
+    private LocalDate flightDate;
 }

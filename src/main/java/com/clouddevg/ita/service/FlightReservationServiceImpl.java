@@ -216,7 +216,7 @@ public class FlightReservationServiceImpl implements FlightReservationService {
                     }
                     throw exception(PILOT, ENTITY_NOT_FOUND, flightDto.getPilotCode());
                 }
-                throw exception(FLIGHT, ENTITY_EXCEPTION, "");
+                throw exception(FLIGHT, ENTITY_EXCEPTION, "Origin & Destination Spaceports cannot be the same for Flight object creation");
             }
             throw exception(SPACEPORT, ENTITY_NOT_FOUND, flightDto.getDestinationSpaceportCode());
         }
@@ -265,7 +265,7 @@ public class FlightReservationServiceImpl implements FlightReservationService {
                     }
                     throw exception(PILOT, ENTITY_NOT_FOUND, flightDto.getPilotCode());
                 }
-                throw exception(FLIGHT, ENTITY_EXCEPTION, "");
+                throw exception(FLIGHT, ENTITY_EXCEPTION, "Origin & Destination Spaceports cannot be the same for Round-Trip Flight object creation");
             }
             throw exception(SPACEPORT, ENTITY_NOT_FOUND, flightDto.getDestinationSpaceportCode());
         }
@@ -343,24 +343,28 @@ public class FlightReservationServiceImpl implements FlightReservationService {
      *
      * @param flightDto
      * @param flightDate
-     * @param createScheduleForFlightPlan
+     * @param createScheduleForFlight
      * @return
      */
     @Override
-    public FlightPlanDto getFlightPlan(FlightDto flightDto, String flightDate, boolean createScheduleForFlightPlan) {
+    public FlightPlanDto getFlightPlan(FlightDto flightDto, String flightDate, boolean createScheduleForFlight) {
         Optional<Flight> flight = flightRepository.findById(flightDto.getId());
         if (flight.isPresent()) {
             Optional<FlightPlan> flightPlan = Optional.ofNullable(flightPlanRepository.findByFlightDetailAndFlightDate(flight.get(), flightDate));
             if (flightPlan.isPresent()) {
+                System.out.println("<=========== Made it here :) =============>");
                 return FlightPlanMapper.toFlightPlanDto(flightPlan.get());
-            } else {
-                if (createScheduleForFlightPlan) { //create the schedule
+            }
+            else {
+                if (createScheduleForFlight) { //create the schedule
+                    System.out.println("<=========== EWWWWWWWWWW =============>");
                     FlightPlan tempFlightPlan = new FlightPlan()
                             .setFlightDetail(flight.get())
                             .setFlightDate(flightDate)
                             .setAvailableSeats(flight.get().getSpacecraft().getCapacity());
                     return FlightPlanMapper.toFlightPlanDto(flightPlanRepository.save(tempFlightPlan));
-                } else {
+                }
+                else {
                     throw exceptionWithId(FLIGHT, ENTITY_NOT_FOUND, 2, flightDto.getId().toString(), flightDate);
                 }
             }
@@ -390,13 +394,38 @@ public class FlightReservationServiceImpl implements FlightReservationService {
                         .setSeatNumber(flightPlan.get().getFlightDetail().getSpacecraft().getCapacity() - flightPlan.get().getAvailableSeats());
                 ticketRepository.save(ticket);
                 flightPlan.get().setAvailableSeats(flightPlan.get().getAvailableSeats() - 1); //reduce availability by 1
-                flightPlanRepository.save(flightPlan.get());//update schedule
+                flightPlanRepository.save(flightPlan.get());//update flight plan
                 return TicketMapper.toTicketDto(ticket);
             }
             throw exceptionWithId(FLIGHT, ENTITY_NOT_FOUND, 2, flightPlanDto.getFlightId().toString(), flightPlanDto.getFlightDate());
         }
         throw exception(USER, ENTITY_NOT_FOUND, userDto.getEmail());
     }
+//    @Override
+//    @Transactional
+//    public TicketDto bookTicket(FlightPlanDto flightPlanDto, UserDto userDto) {
+//        User user = getUser(userDto.getEmail());
+//        if (user != null) {
+//            Optional<FlightPlan> flightPlan = flightPlanRepository.findById(flightPlanDto.getId());
+//            if (flightPlan.isPresent()) {
+//                if ((flightPlan.get().getAvailableSeats() - 1) < 0) {
+//                    Ticket ticket = new Ticket()
+//                            .setCancellable(false)
+//                            .setFlightDate(flightPlan.get().getFlightDate())
+//                            .setPassenger(user)
+//                            .setFlightPlan(flightPlan.get())
+//                            .setSeatNumber(flightPlan.get().getFlightDetail().getSpacecraft().getCapacity() - flightPlan.get().getAvailableSeats());
+//                    ticketRepository.save(ticket);
+//                    flightPlan.get().setAvailableSeats(flightPlan.get().getAvailableSeats() - 1); //reduce availability by 1
+//                    flightPlanRepository.save(flightPlan.get());//update flight plan
+//                    return TicketMapper.toTicketDto(ticket);
+//                }
+//                throw exception(FLIGHT_PLAN, ENTITY_EXCEPTION, "Maximum Passenger Occupancy for this Flight has been reached, no more tickets are available");
+//            }
+//            throw exceptionWithId(FLIGHT, ENTITY_NOT_FOUND, 2, flightPlanDto.getFlightId().toString(), flightPlanDto.getFlightDate());
+//        }
+//        throw exception(USER, ENTITY_NOT_FOUND, userDto.getEmail());
+//    }
 
     /**
      * Search for all Flights between origin and destination spaceports

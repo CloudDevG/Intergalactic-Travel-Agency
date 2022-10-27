@@ -1,6 +1,7 @@
 package com.clouddevg.ita.util;
 
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Date;
 
 public class DateUtils {
@@ -12,8 +13,9 @@ public class DateUtils {
      *
      * @return today's date as java.util.Date object
      */
-    public static Date today() {
-        return new Date();
+    public static LocalDate today() {
+
+        return LocalDate.now();
     }
 
     /**
@@ -22,7 +24,7 @@ public class DateUtils {
      * @return today's date as yyyy-MM-dd format
      */
     public static String todayStr() {
-        return sdf.format(today());
+        return LocalDate.now().toString();
     }
 
     /**
@@ -31,7 +33,7 @@ public class DateUtils {
      * @param date
      * @return
      */
-    public static String formattedDate(Date date) {
-        return date != null ? sdf.format(date) : todayStr();
+    public static String formattedDate(LocalDate date) {
+        return date != null ? date.toString() : todayStr();
     }
 }

@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.Accessors;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 @Getter
@@ -16,7 +17,7 @@ import java.util.Date;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ResponseError {
-    private Date timestamp;
+    private LocalDate timestamp;
     private String message;
     private String details;
 }

@@ -120,7 +120,7 @@ public class IntergalacticTravelAgencyApplication {
                 pilotRepository.save(pilotA);
             }
 
-            //Create a Spacecraft
+            //Create two Spacecraft
             Spacecraft spacecraftA = spacecraftRepository.findByCode("P-A-MF");
             if (spacecraftA == null) {
                 spacecraftA = new Spacecraft()
@@ -131,35 +131,67 @@ public class IntergalacticTravelAgencyApplication {
                 spacecraftRepository.save(spacecraftA);
             }
 
-            //Add spacecraftA to set of spacecrafts owned by Pilot 'PILOTA'
+            Spacecraft spacecraftB = spacecraftRepository.findByCode("P-A-XW");
+            if (spacecraftB == null) {
+                spacecraftB = new Spacecraft()
+                        .setCode("P-A-XW")
+                        .setPilot(pilotA)
+                        .setCapacity(2)
+                        .setMake("X-Wing");
+                spacecraftRepository.save(spacecraftB);
+            }
+
+            //Add spacecraftA & spacecraftB to set of spacecrafts owned by Pilot 'PILOTA'
             if (pilotA.getSpacecrafts() == null) {
                 Set<Spacecraft> spacecrafts = new HashSet<>();
                 pilotA.setSpacecrafts(spacecrafts);
                 pilotA.getSpacecrafts().add(spacecraftA);
+                pilotA.getSpacecrafts().add(spacecraftB);
                 pilotRepository.save(pilotA);
             }
 
-            //Create a Flight
-            Flight flight = flightRepository.findByOriginSpaceportAndDestinationSpaceportAndSpacecraft(spaceportA, spaceportB, spacecraftA);
-            if (flight == null) {
-                flight = new Flight()
+            //Create two Flights
+            Flight flightA = flightRepository.findByOriginSpaceportAndDestinationSpaceportAndSpacecraft(spaceportA, spaceportB, spacecraftA);
+            if (flightA == null) {
+                flightA = new Flight()
                         .setOriginSpaceport(spaceportA)
                         .setDestinationSpaceport(spaceportB)
                         .setSpacecraft(spacecraftA)
                         .setPilot(pilotA)
-                        .setFare(10000)
-                        .setFlightDuration(700);
-                flightRepository.save(flight);
+                        .setFare(250000)
+                        .setFlightDuration(100);
+                flightRepository.save(flightA);
             }
 
-            //Create a Flight Plan
-            FlightPlan flightPlan = flightPlanRepository.findByFlightDetailAndFlightDate(flight, DateUtils.todayStr());
-            if (flightPlan == null) {
-                flightPlan = new FlightPlan()
-                        .setFlightDetail(flight)
+            Flight flightB = flightRepository.findByOriginSpaceportAndDestinationSpaceportAndSpacecraft(spaceportC, spaceportD, spacecraftB);
+            if (flightB == null) {
+                flightB = new Flight()
+                        .setOriginSpaceport(spaceportC)
+                        .setDestinationSpaceport(spaceportD)
+                        .setSpacecraft(spacecraftB)
+                        .setPilot(pilotA)
+                        .setFare(500000)
+                        .setFlightDuration(200);
+                flightRepository.save(flightB);
+            }
+
+            //Create two Flight Plans
+            FlightPlan flightPlanA = flightPlanRepository.findByFlightDetailAndFlightDate(flightA, DateUtils.todayStr());
+            if (flightPlanA == null) {
+                flightPlanA = new FlightPlan()
+                        .setFlightDetail(flightA)
                         .setFlightDate(DateUtils.todayStr())
-                        .setAvailableSeats(flight.getSpacecraft().getCapacity());
-                flightPlanRepository.save(flightPlan);
+                        .setAvailableSeats(flightA.getSpacecraft().getCapacity());
+                flightPlanRepository.save(flightPlanA);
+            }
+
+            FlightPlan flightPlanB = flightPlanRepository.findByFlightDetailAndFlightDate(flightB, DateUtils.todayStr());
+            if (flightPlanB == null) {
+                flightPlanB = new FlightPlan()
+                        .setFlightDetail(flightB)
+                        .setFlightDate(DateUtils.todayStr())
+                        .setAvailableSeats(flightB.getSpacecraft().getCapacity());
+                flightPlanRepository.save(flightPlanB);
             }
         };
     }

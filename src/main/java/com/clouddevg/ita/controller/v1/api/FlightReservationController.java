@@ -79,10 +79,10 @@ public class FlightReservationController {
         String email = (String) auth.getPrincipal();
         Optional<UserDto> userDto = Optional.ofNullable(userService.findUserByEmail(email));
         if (userDto.isPresent()) {
-//            Optional<FlightDto> flightDto = Optional
-//                    .ofNullable(flightReservationService.getFlightById(bookTicketRequest.getFlightID()));
             Optional<FlightDto> flightDto = Optional
-                    .ofNullable(flightReservationService.getFlightById(Long.valueOf(bookTicketRequest.getFlightID())));
+                    .ofNullable(flightReservationService.getFlightById(bookTicketRequest.getFlightID()));
+//            Optional<FlightDto> flightDto = Optional
+//                    .ofNullable(flightReservationService.getFlightById(Long.valueOf(bookTicketRequest.getFlightID())));
             if (flightDto.isPresent()) {
                 Optional<FlightPlanDto> flightPlanDto = Optional
                         .ofNullable(flightReservationService.getFlightPlan(flightDto.get(), DateUtils.formattedDate(bookTicketRequest.getFlightDate()), true));

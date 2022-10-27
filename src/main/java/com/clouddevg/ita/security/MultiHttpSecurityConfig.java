@@ -123,7 +123,7 @@ public class MultiHttpSecurityConfig {
                     "/webjars/**", "/swagger-resources/**", "/actuator", "/swagger-ui/**",
                     "/actuator/**", "/swagger-ui/index.html", "/swagger-ui/");
         }
-        // @formatter:on
+        // @formatter:off
     }
 }
 

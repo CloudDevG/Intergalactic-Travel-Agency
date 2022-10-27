@@ -25,5 +25,6 @@ public class FlightFormCommand {
     @Positive
     private int flightFare;
 
+    @NotNull
     private Boolean roundTrip;
 }

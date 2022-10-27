@@ -52,7 +52,7 @@ public class IntergalacticTravelAgencyApplication {
                 admin = new User()
                         .setEmail("admin@gmail.com")
                         .setPassword("$2a$10$Wfvx5dQ3LpvnH/jAfkiWeuL/K43dEN2xCE53eSqz1lW5K17U30vkm") // "123456"
-                        .setFirstName("Noelle")
+                        .setFirstName("Jane")
                         .setLastName("Doe")
                         .setMobileNumber("9425094250")
                         .setRoles(Arrays.asList(adminRole));

@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,17 +13,15 @@
     <link rel="stylesheet" href="/auth/css/style.css">
 </head>
 <body>
-
 <div class="main">
     <!-- Sing in  Form -->
     <section class="sign-in">
         <div class="container">
             <div class="signin-content">
                 <div class="signin-image">
-                    <figure><img src="/auth/images/signin-image.jpg" alt="Sign Up Image" style="border-radius: 15%"></figure>
+                    <figure><img src="/auth/images/ita-landing.jpg" alt="Sign Up Image" style="border-radius: 15%"></figure>
                     <a href="/signup" class="signup-image-link">Create an account</a>
                 </div>
-
                 <div class="signin-form">
                     <h2 class="form-title">Login</h2>
                     <form method="POST" class="register-form" id="login-form" th:action="@{/login}">
@@ -36,22 +33,18 @@
                             <label for="password"><i class="zmdi zmdi-lock"></i></label>
                             <input type="password" name="password" id="password" placeholder="Password"/>
                         </div>
-                        <div class="form-group">
-                            <input type="checkbox" name="remember-me" id="remember-me" class="agree-term" />
-                            <label for="remember-me" class="label-agree-term"><span><span></span></span>Remember me</label>
-                        </div>
                         <div class="form-group form-button">
-                            <input type="submit" name="signin" id="signin" class="form-submit" value="Log in"/>
+                            <input type="submit" name="signin" id="signin" class="form-submit" value="Login"/>
                         </div>
                     </form>
                     <div id="errors" class="text-danger" th:if="${(param.error != null) and (param.error[0] == 'true')}">
-                        Invalid email or password
+                        Invalid Email or Password
                     </div>
                     <div class="social-login">
-                        <span class="social-label">Or login with</span>
+                        <span class="social-label">Follow Us</span>
                         <ul class="socials">
-                            <li><a href="#"><i class="display-flex-center zmdi zmdi-facebook"></i></a></li>
-                            <li><a href="#"><i class="display-flex-center zmdi zmdi-twitter"></i></a></li>
+                            <li><a href="#"><i class="display-flex-center zmdi zmdi-github"></i></a></li>
+                            <li><a href="#"><i class="display-flex-center zmdi zmdi-linkedin"></i></a></li>
                             <li><a href="#"><i class="display-flex-center zmdi zmdi-google"></i></a></li>
                         </ul>
                     </div>
@@ -60,7 +53,6 @@
         </div>
     </section>
 </div>
-
 <!-- JS -->
 <script src="/auth/vendor/jquery/jquery.min.js"></script>
 </body>

@@ -401,31 +401,6 @@ public class FlightReservationServiceImpl implements FlightReservationService {
         }
         throw exception(USER, ENTITY_NOT_FOUND, userDto.getEmail());
     }
-//    @Override
-//    @Transactional
-//    public TicketDto bookTicket(FlightPlanDto flightPlanDto, UserDto userDto) {
-//        User user = getUser(userDto.getEmail());
-//        if (user != null) {
-//            Optional<FlightPlan> flightPlan = flightPlanRepository.findById(flightPlanDto.getId());
-//            if (flightPlan.isPresent()) {
-//                if ((flightPlan.get().getAvailableSeats() - 1) < 0) {
-//                    Ticket ticket = new Ticket()
-//                            .setCancellable(false)
-//                            .setFlightDate(flightPlan.get().getFlightDate())
-//                            .setPassenger(user)
-//                            .setFlightPlan(flightPlan.get())
-//                            .setSeatNumber(flightPlan.get().getFlightDetail().getSpacecraft().getCapacity() - flightPlan.get().getAvailableSeats());
-//                    ticketRepository.save(ticket);
-//                    flightPlan.get().setAvailableSeats(flightPlan.get().getAvailableSeats() - 1); //reduce availability by 1
-//                    flightPlanRepository.save(flightPlan.get());//update flight plan
-//                    return TicketMapper.toTicketDto(ticket);
-//                }
-//                throw exception(FLIGHT_PLAN, ENTITY_EXCEPTION, "Maximum Passenger Occupancy for this Flight has been reached, no more tickets are available");
-//            }
-//            throw exceptionWithId(FLIGHT, ENTITY_NOT_FOUND, 2, flightPlanDto.getFlightId().toString(), flightPlanDto.getFlightDate());
-//        }
-//        throw exception(USER, ENTITY_NOT_FOUND, userDto.getEmail());
-//    }
 
     /**
      * Search for all Flights between origin and destination spaceports

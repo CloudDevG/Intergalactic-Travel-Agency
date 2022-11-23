@@ -17,7 +17,6 @@ public class ITAException {
         ITAException.propertiesConfig = propertiesConfig;
     }
 
-
     /**
      * Returns new RuntimeException based on template and args
      *
@@ -28,7 +27,6 @@ public class ITAException {
     public static RuntimeException throwException(String messageTemplate, String... args) {
         return new RuntimeException(format(messageTemplate, args));
     }
-
 
     /**
      * Returns new RuntimeException based on EntityType, ExceptionType and args
@@ -43,7 +41,6 @@ public class ITAException {
         return throwException(exceptionType, messageTemplate, args);
     }
 
-
     /**
      * Returns new RuntimeException based on EntityType, ExceptionType and args
      *
@@ -57,7 +54,6 @@ public class ITAException {
         return throwException(exceptionType, messageTemplate, args);
     }
 
-
     /**
      * Returns new RuntimeException based on EntityType, ExceptionType, messageTemplate and args
      *
@@ -70,7 +66,6 @@ public class ITAException {
     public static RuntimeException throwExceptionWithTemplate(EntityType entityType, ExceptionType exceptionType, String messageTemplate, String... args) {
         return throwException(exceptionType, messageTemplate, args);
     }
-
 
     /**
      * Returns new RuntimeException based on template and args

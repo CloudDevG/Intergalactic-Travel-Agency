@@ -11,7 +11,6 @@ import com.clouddevg.ita.exception.ITAException;
 import com.clouddevg.ita.repository.user.RoleRepository;
 import com.clouddevg.ita.repository.user.UserRepository;
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;

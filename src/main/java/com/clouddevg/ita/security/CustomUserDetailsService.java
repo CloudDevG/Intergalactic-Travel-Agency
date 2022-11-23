@@ -3,7 +3,6 @@ package com.clouddevg.ita.security;
 import com.clouddevg.ita.dto.entity.user.RoleDto;
 import com.clouddevg.ita.dto.entity.user.UserDto;
 import com.clouddevg.ita.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

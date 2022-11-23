@@ -4,7 +4,6 @@ import com.clouddevg.ita.security.api.ApiJWTAuthenticationFilter;
 import com.clouddevg.ita.security.api.ApiJWTAuthorizationFilter;
 import com.clouddevg.ita.security.form.CustomAuthenticationSuccessHandler;
 import com.clouddevg.ita.security.form.CustomLogoutSuccessHandler;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -24,11 +23,15 @@ public class MultiHttpSecurityConfig {
     @Configuration
     @Order(1)
     public static class ApiWebSecurityConfigurationAdapter extends WebSecurityConfigurerAdapter {
-        @Autowired
-        private BCryptPasswordEncoder bCryptPasswordEncoder;
 
-        @Autowired
-        private CustomUserDetailsService userDetailsService;
+        private final BCryptPasswordEncoder bCryptPasswordEncoder;
+
+        private final CustomUserDetailsService userDetailsService;
+
+        public ApiWebSecurityConfigurationAdapter(BCryptPasswordEncoder bCryptPasswordEncoder, CustomUserDetailsService userDetailsService) {
+            this.bCryptPasswordEncoder = bCryptPasswordEncoder;
+            this.userDetailsService = userDetailsService;
+        }
 
         @Override
         protected void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -63,14 +66,22 @@ public class MultiHttpSecurityConfig {
     @Order(2)
     @Configuration
     public static class FormLoginWebSecurityConfigurerAdapter extends WebSecurityConfigurerAdapter {
-        @Autowired
-        private BCryptPasswordEncoder bCryptPasswordEncoder;
 
-        @Autowired
-        private CustomAuthenticationSuccessHandler customAuthenticationSuccessHandler;
+        private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
-        @Autowired
-        private CustomUserDetailsService userDetailsService;
+
+        private final CustomAuthenticationSuccessHandler customAuthenticationSuccessHandler;
+
+
+        private final CustomUserDetailsService userDetailsService;
+
+        public FormLoginWebSecurityConfigurerAdapter(BCryptPasswordEncoder bCryptPasswordEncoder,
+                                                     CustomAuthenticationSuccessHandler customAuthenticationSuccessHandler,
+                                                     CustomUserDetailsService userDetailsService) {
+            this.bCryptPasswordEncoder = bCryptPasswordEncoder;
+            this.customAuthenticationSuccessHandler = customAuthenticationSuccessHandler;
+            this.userDetailsService = userDetailsService;
+        }
 
         @Override
         protected void configure(AuthenticationManagerBuilder auth) throws Exception {

@@ -8,7 +8,6 @@ import com.clouddevg.ita.dto.entity.flight.SpaceportDto;
 import com.clouddevg.ita.dto.entity.user.UserDto;
 import com.clouddevg.ita.service.FlightReservationService;
 import com.clouddevg.ita.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;

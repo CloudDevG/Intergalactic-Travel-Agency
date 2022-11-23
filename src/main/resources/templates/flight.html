@@ -11,7 +11,7 @@
     <!-- ============================================================== -->
     <div class="row page-titles">
         <div class="col-md-5 col-8 align-self-center">
-            <h3 class="text-themecolor m-b-0 m-t-0">Flight Details</h3>
+            <h3 class="text-themecolor m-b-0 m-t-0">My Flight Details</h3>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="home">Home</a></li>
                 <li class="breadcrumb-item active">Flights</li>
@@ -31,7 +31,7 @@
             <div class="card">
                 <div class="card-block">
                     <h4 class="card-title">Flights</h4>
-                    <h6 class="card-subtitle">Pilot Flights</h6>
+                    <h6 class="card-subtitle">[[${pilot.name}]]'s Planned Routes</h6>
                     <div class="table-responsive">
                         <table class="table">
                             <thead>
@@ -114,7 +114,7 @@
                             <small class="text-danger-padded" th:if="${#fields.hasErrors('flightDuration')}" th:errors="*{flightDuration}"></small>
                         </div>
                         <div class="form-group">
-                            <label for="flightFare" class="col-md-12">Fare</label>
+                            <label for="flightFare" class="col-md-12">Fare Per Ticket</label>
                             <div class="col-md-12">
                                 <input type="text" th:field="*{flightFare}" class="form-control form-control-line" name="flightFare" id="flightFare">
                             </div>

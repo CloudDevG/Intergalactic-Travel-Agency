@@ -129,41 +129,6 @@ public class DashboardController {
         return modelAndView;
     }
 
-//    @PostMapping(value = "/flight")
-//    public ModelAndView addNewFlight(@Valid @ModelAttribute("flightFormData") FlightFormCommand flightFormCommand, BindingResult bindingResult) {
-//        ModelAndView modelAndView = new ModelAndView("flight");
-//        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-//        UserDto userDto = userService.findUserByEmail(auth.getName());
-//        PilotDto pilotDto = flightReservationService.getPilot(userDto);
-//        Set<SpaceportDto> spaceports = flightReservationService.getAllSpaceports();
-//        List<FlightDto> flights = flightReservationService.getPilotFlights(pilotDto.getCode());
-//
-//        modelAndView.addObject("spaceports", spaceports);
-//        modelAndView.addObject("pilot", pilotDto);
-//        modelAndView.addObject("userName", userDto.getFullName());
-//        modelAndView.addObject("flights", flights);
-//
-//        if (!bindingResult.hasErrors()) {
-//            try {
-//                FlightDto flightDto = new FlightDto()
-//                        .setOriginSpaceportCode(flightFormCommand.getOriginSpaceport())
-//                        .setDestinationSpaceportCode(flightFormCommand.getDestinationSpaceport())
-//                        .setSpacecraftCode(flightFormCommand.getSpacecraftCode())
-//                        .setFlightDuration(flightFormCommand.getFlightDuration())
-//                        .setFare(flightFormCommand.getFlightFare())
-//                        .setPilotCode(pilotDto.getCode());
-//                flightReservationService.addFlight(flightDto);
-//
-//                flights = flightReservationService.getPilotFlights(pilotDto.getCode());
-//                modelAndView.addObject("flights", flights);
-//                modelAndView.addObject("flightFormData", new FlightFormCommand());
-//            } catch (Exception ex) {
-//                bindingResult.rejectValue("sourceSpaceport", "error.flightFormData", ex.getMessage());
-//            }
-//        }
-//        return modelAndView;
-//    }
-
     @PostMapping(value = "/flight")
     public ModelAndView addNewFlight(@Valid @ModelAttribute("flightFormData") FlightFormCommand flightFormCommand, BindingResult bindingResult) {
         ModelAndView modelAndView = new ModelAndView("flight");
@@ -178,7 +143,7 @@ public class DashboardController {
         modelAndView.addObject("userName", userDto.getFullName());
         modelAndView.addObject("flights", flights);
 
-        System.out.println("<========= Boolean RoundTrip: " + flightFormCommand.getRoundTrip() + " =========>");
+//        System.out.println("<========= Boolean RoundTrip: " + flightFormCommand.getRoundTrip() + " =========>");
 
         if (!bindingResult.hasErrors()) {
             try {

@@ -12,7 +12,7 @@
     <!-- ============================================================== -->
     <div class="row page-titles">
         <div class="col-md-5 col-8 align-self-center">
-            <h3 class="text-themecolor m-b-0 m-t-0">Spacecraft Details</h3>
+            <h3 class="text-themecolor m-b-0 m-t-0">My Spacecraft Details</h3>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="home">Home</a></li>
                 <li class="breadcrumb-item active">Spacecrafts</li>
@@ -31,15 +31,15 @@
         <div class="col-lg-8 col-md-7">
             <div class="card">
                 <div class="card-block">
-                    <h4 class="card-title">Spacecrafts</h4>
-                    <h6 class="card-subtitle">Pilot owned Spacecrafts</h6>
+                    <h4 class="card-title">Available Spacecraft</h4>
+                    <h6 class="card-subtitle">[[${pilot.name}]]'s Fleet</h6>
                     <div class="table-responsive">
                         <table class="table">
                             <thead>
                             <tr>
                                 <th>#</th>
-                                <th>Spacecraft Code</th>
-                                <th>Make/Model</th>
+                                <th>Code</th>
+                                <th>Make</th>
                                 <th>Capacity</th>
                             </tr>
                             </thead>
@@ -72,7 +72,7 @@
                             <small class="text-danger-padded" th:if="${#fields.hasErrors('code')}" th:errors="*{code}"></small>
                         </div>
                         <div class="form-group">
-                            <label for="make" class="col-md-12">Make/Model</label>
+                            <label for="make" class="col-md-12">Make</label>
                             <div class="col-md-12">
                                 <input type="text" th:field="*{make}" class="form-control form-control-line" name="make" id="make">
                             </div>

@@ -1,108 +1,84 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{layout/layout}">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout/layout}">
 <body>
-<!-- ============================================================== -->
-<!-- Container fluid  -->
-<!-- ============================================================== -->
-<div class="container-fluid" layout:fragment="content">
-    <!-- ============================================================== -->
-    <!-- Bread crumb and right sidebar toggle -->
-    <!-- ============================================================== -->
-    <div class="row page-titles">
-        <div class="col-md-5 col-8 align-self-center">
-            <h3 class="text-themecolor m-b-0 m-t-0">My Spacecraft Details</h3>
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="home">Home</a></li>
-                <li class="breadcrumb-item active">Spacecrafts</li>
-            </ol>
+    <div class="container-fluid" layout:fragment="content">
+        <div class="row page-titles">
+            <div class="col-md-5 col-8 align-self-center">
+                <h3 class="text-themecolor m-b-0 m-t-0">My Spacecraft Details</h3>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="home">Home</a></li>
+                    <li class="breadcrumb-item active">Spacecrafts</li>
+                </ol>
+            </div>
         </div>
-    </div>
-    <!-- ============================================================== -->
-    <!-- End Bread crumb and right sidebar toggle -->
-    <!-- ============================================================== -->
-    <!-- ============================================================== -->
-    <!-- Start Page Content -->
-    <!-- ============================================================== -->
-    <!-- Row -->
-    <div class="row">
-        <!-- column -->
-        <div class="col-lg-8 col-md-7">
-            <div class="card">
-                <div class="card-block">
-                    <h4 class="card-title">Available Spacecraft</h4>
-                    <h6 class="card-subtitle">[[${pilot.name}]]'s Fleet</h6>
-                    <div class="table-responsive">
-                        <table class="table">
-                            <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>Code</th>
-                                <th>Make</th>
-                                <th>Capacity</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <th:block th:each="spacecraft,iterationStatus : ${pilot.spacecrafts}">
+        <div class="row">
+            <div class="col-lg-8 col-md-7">
+                <div class="card">
+                    <div class="card-block">
+                        <h4 class="card-title">Available Spacecraft</h4>
+                        <h6 class="card-subtitle">[[${pilot.name}]]'s Fleet</h6>
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
                                 <tr>
-                                    <td th:text=${iterationStatus.count}></td>
-                                    <td th:text=${spacecraft.code}></td>
-                                    <td th:text=${spacecraft.make}></td>
-                                    <td th:text=${spacecraft.capacity}></td>
+                                    <th>#</th>
+                                    <th>Code</th>
+                                    <th>Make</th>
+                                    <th>Capacity</th>
                                 </tr>
-                            </th:block>
-                            </tbody>
-                        </table>
+                                </thead>
+                                <tbody>
+                                <th:block th:each="spacecraft,iterationStatus : ${pilot.spacecrafts}">
+                                    <tr>
+                                        <td th:text=${iterationStatus.count}></td>
+                                        <td th:text=${spacecraft.code}></td>
+                                        <td th:text=${spacecraft.make}></td>
+                                        <td th:text=${spacecraft.capacity}></td>
+                                    </tr>
+                                </th:block>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-5">
+                <div class="card">
+                    <div class="card-block">
+                        <h3 class="card-title">Add New Spacecraft</h3>
+                        <h6 class="card-subtitle">Enter details</h6>
+                        <form method="POST" class="form-horizontal form-material" th:action="@{/spacecraft}" th:object="${spacecraftFormData}">
+                            <div class="form-group">
+                                <label for="code" class="col-md-12">Spacecraft Code</label>
+                                <div class="col-md-12">
+                                    <input type="text" th:field="*{code}" class="form-control form-control-line" name="code" id="code">
+                                </div>
+                                <small class="text-danger-padded" th:if="${#fields.hasErrors('code')}" th:errors="*{code}"></small>
+                            </div>
+                            <div class="form-group">
+                                <label for="make" class="col-md-12">Make</label>
+                                <div class="col-md-12">
+                                    <input type="text" th:field="*{make}" class="form-control form-control-line" name="make" id="make">
+                                </div>
+                                <small class="text-danger-padded" th:if="${#fields.hasErrors('make')}" th:errors="*{make}"></small>
+                            </div>
+                            <div class="form-group">
+                                <label for="capacity" class="col-md-12">Capacity</label>
+                                <div class="col-md-12">
+                                    <input type="text" th:field="*{capacity}" class="form-control form-control-line" name="capacity" id="capacity">
+                                </div>
+                                <small class="text-danger-padded" th:if="${#fields.hasErrors('capacity')}" th:errors="*{capacity}"></small>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-12">
+                                    <button class="btn btn-success">Add Spacecraft</button>
+                                </div>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col-lg-4 col-md-5">
-            <div class="card">
-                <div class="card-block">
-                    <h3 class="card-title">Add New Spacecraft</h3>
-                    <h6 class="card-subtitle">Enter details</h6>
-                    <form method="POST" class="form-horizontal form-material" th:action="@{/spacecraft}" th:object="${spacecraftFormData}">
-                        <div class="form-group">
-                            <label for="code" class="col-md-12">Spacecraft Code</label>
-                            <div class="col-md-12">
-                                <input type="text" th:field="*{code}" class="form-control form-control-line" name="code" id="code">
-                            </div>
-                            <small class="text-danger-padded" th:if="${#fields.hasErrors('code')}" th:errors="*{code}"></small>
-                        </div>
-                        <div class="form-group">
-                            <label for="make" class="col-md-12">Make</label>
-                            <div class="col-md-12">
-                                <input type="text" th:field="*{make}" class="form-control form-control-line" name="make" id="make">
-                            </div>
-                            <small class="text-danger-padded" th:if="${#fields.hasErrors('make')}" th:errors="*{make}"></small>
-                        </div>
-                        <div class="form-group">
-                            <label for="capacity" class="col-md-12">Capacity</label>
-                            <div class="col-md-12">
-                                <input type="text" th:field="*{capacity}" class="form-control form-control-line" name="capacity" id="capacity">
-                            </div>
-                            <small class="text-danger-padded" th:if="${#fields.hasErrors('capacity')}" th:errors="*{capacity}"></small>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-sm-12">
-                                <button class="btn btn-success">Add Spacecraft</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
     </div>
-    <!-- Row -->
-    <!-- ============================================================== -->
-    <!-- End Page Content -->
-    <!-- ============================================================== -->
-</div>
-<!-- ============================================================== -->
-<!-- End Container fluid  -->
-<!-- ============================================================== -->
 </body>
-
 </html>

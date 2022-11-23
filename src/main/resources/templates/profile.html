@@ -1,14 +1,7 @@
 <!DOCTYPE html>
-<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:th="http://www.thymeleaf.org"
-       layout:decorate="~{layout/layout}">
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:th="http://www.thymeleaf.org" layout:decorate="~{layout/layout}">
 <body>
-    <!-- ============================================================== -->
-    <!-- Container fluid  -->
-    <!-- ============================================================== -->
     <div class="container-fluid" layout:fragment="content">
-        <!-- ============================================================== -->
-        <!-- Bread crumb and right sidebar toggle -->
-        <!-- ============================================================== -->
         <div class="row page-titles">
             <div class="col-md-5 col-8 align-self-center">
                 <h3 class="text-themecolor m-b-0 m-t-0">My User Profile</h3>
@@ -18,27 +11,17 @@
                 </ol>
             </div>
         </div>
-        <!-- ============================================================== -->
-        <!-- End Bread crumb and right sidebar toggle -->
-        <!-- ============================================================== -->
-        <!-- ============================================================== -->
-        <!-- Start Page Content -->
-        <!-- ============================================================== -->
-        <!-- Row -->
         <div class="row">
-            <!-- Column -->
             <div class="col-lg-4 col-xlg-3 col-md-5">
                 <div class="card">
                     <div class="card-block">
-                        <center class="m-t-30"><img src="/dashboard/assets/images/users/ita-profile.jpg" class="img-circle"
-                                                    width="150"/>
+                        <center class="m-t-30"><img src="/dashboard/assets/images/ita-profile.jpg" class="img-circle" width="150"/>
                             <h4 class="card-title m-t-10" th:inline="text">[[${userName}]]</h4>
                             <h6 class="card-subtitle">Pilot</h6>
                         </center>
                     </div>
                 </div>
             </div>
-            <!-- Column -->
             <div class="col-lg-4 col-xlg-3 col-md-7">
                 <div class="card">
                     <div class="card-block">
@@ -73,7 +56,6 @@
                     </div>
                 </div>
             </div>
-            <!-- Column -->
             <div class="col-lg-4 col-xlg-3 col-md-5">
                 <div class="card">
                     <div class="card-block">
@@ -103,13 +85,6 @@
                 </div>
             </div>
         </div>
-        <!-- Row -->
-        <!-- ============================================================== -->
-        <!-- End Page Content -->
-        <!-- ============================================================== -->
     </div>
-    <!-- ============================================================== -->
-    <!-- End Container Fluid  -->
-    <!-- ============================================================== -->
 </body>
 </html>

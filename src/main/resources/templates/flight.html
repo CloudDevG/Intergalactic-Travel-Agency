@@ -1,14 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:th="http://www.thymeleaf.org"
-      layout:decorate="~{layout/layout}">
-
-<!-- ============================================================== -->
-<!-- Container fluid  -->
-<!-- ============================================================== -->
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:th="http://www.thymeleaf.org" layout:decorate="~{layout/layout}">
 <div class="container-fluid" layout:fragment="content">
-    <!-- ============================================================== -->
-    <!-- Breadcrumb and right Sidebar toggle -->
-    <!-- ============================================================== -->
     <div class="row page-titles">
         <div class="col-md-5 col-8 align-self-center">
             <h3 class="text-themecolor m-b-0 m-t-0">My Flight Details</h3>
@@ -18,15 +10,7 @@
             </ol>
         </div>
     </div>
-    <!-- ============================================================== -->
-    <!-- End Bread crumb and right sidebar toggle -->
-    <!-- ============================================================== -->
-    <!-- ============================================================== -->
-    <!-- Start Page Content -->
-    <!-- ============================================================== -->
-    <!-- Row -->
     <div class="row">
-        <!-- Column -->
         <div class="col-lg-8 col-md-7">
             <div class="card">
                 <div class="card-block">
@@ -38,8 +22,8 @@
                             <tr>
                                 <th>#</th>
                                 <th>Spacecraft Code</th>
-                                <th>Origin Spaceport</th>
-                                <th>Destination Spaceport</th>
+                                <th>Origin</th>
+                                <th>Destination</th>
                                 <th>Duration</th>
                                 <th>Fare</th>
                             </tr>
@@ -140,12 +124,6 @@
             </div>
         </div>
     </div>
-    <!-- ============================================================== -->
-    <!-- End Page Content -->
-    <!-- ============================================================== -->
 </div>
-<!-- ============================================================== -->
-<!-- End Container Fluid  -->
-<!-- ============================================================== -->
 </body>
 </html>

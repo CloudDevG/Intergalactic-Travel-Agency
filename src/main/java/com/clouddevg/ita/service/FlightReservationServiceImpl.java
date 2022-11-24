@@ -62,7 +62,7 @@ public class FlightReservationServiceImpl implements FlightReservationService {
     }
 
     /**
-     * Returns all the available spaceports in the database.
+     * Returns all the available Spaceports in the database.
      *
      * @return
      */
@@ -352,12 +352,10 @@ public class FlightReservationServiceImpl implements FlightReservationService {
         if (flight.isPresent()) {
             Optional<FlightPlan> flightPlan = Optional.ofNullable(flightPlanRepository.findByFlightDetailAndFlightDate(flight.get(), flightDate));
             if (flightPlan.isPresent()) {
-                System.out.println("<=========== Made it here :) =============>");
                 return FlightPlanMapper.toFlightPlanDto(flightPlan.get());
             }
             else {
                 if (createScheduleForFlight) { //create the schedule
-                    System.out.println("<=========== EWWWWWWWWWW =============>");
                     FlightPlan tempFlightPlan = new FlightPlan()
                             .setFlightDetail(flight.get())
                             .setFlightDate(flightDate)
@@ -391,7 +389,7 @@ public class FlightReservationServiceImpl implements FlightReservationService {
                         .setFlightDate(flightPlan.get().getFlightDate())
                         .setPassenger(user)
                         .setFlightPlan(flightPlan.get())
-                        .setSeatNumber(flightPlan.get().getFlightDetail().getSpacecraft().getCapacity() - flightPlan.get().getAvailableSeats());
+                        .setSeatNumber((flightPlan.get().getFlightDetail().getSpacecraft().getCapacity() - flightPlan.get().getAvailableSeats()) + 1);
                 ticketRepository.save(ticket);
                 flightPlan.get().setAvailableSeats(flightPlan.get().getAvailableSeats() - 1); //reduce availability by 1
                 flightPlanRepository.save(flightPlan.get());//update flight plan

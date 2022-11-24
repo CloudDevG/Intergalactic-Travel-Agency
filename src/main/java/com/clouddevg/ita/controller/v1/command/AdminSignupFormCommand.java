@@ -29,7 +29,7 @@ public class AdminSignupFormCommand {
     private String pilotName;
 
     @NotBlank
-    @Size(max = 100)
+    @Size(max = 150)
     private String pilotDetails;
 
     @NotBlank

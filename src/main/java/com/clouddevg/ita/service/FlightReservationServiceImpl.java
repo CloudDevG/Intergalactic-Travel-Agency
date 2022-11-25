@@ -392,7 +392,7 @@ public class FlightReservationServiceImpl implements FlightReservationService {
                         .setSeatNumber((flightPlan.get().getFlightDetail().getSpacecraft().getCapacity() - flightPlan.get().getAvailableSeats()) + 1);
                 ticketRepository.save(ticket);
                 flightPlan.get().setAvailableSeats(flightPlan.get().getAvailableSeats() - 1); //reduce availability by 1
-                flightPlanRepository.save(flightPlan.get());//update flight plan
+                flightPlanRepository.save(flightPlan.get()); //update flight plan
                 return TicketMapper.toTicketDto(ticket);
             }
             throw exceptionWithId(FLIGHT, ENTITY_NOT_FOUND, 2, flightPlanDto.getFlightId().toString(), flightPlanDto.getFlightDate());

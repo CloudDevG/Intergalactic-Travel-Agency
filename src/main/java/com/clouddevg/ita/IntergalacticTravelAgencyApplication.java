@@ -1,5 +1,6 @@
 package com.clouddevg.ita;
 
+import com.clouddevg.ita.dto.mapper.TicketMapper;
 import com.clouddevg.ita.entity.flight.*;
 import com.clouddevg.ita.entity.user.Role;
 import com.clouddevg.ita.entity.user.User;
@@ -15,6 +16,7 @@ import org.springframework.context.annotation.Bean;
 
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 @SpringBootApplication
@@ -28,10 +30,10 @@ public class IntergalacticTravelAgencyApplication {
     CommandLineRunner init(RoleRepository roleRepository, UserRepository userRepository,
                            SpaceportRepository spaceportRepository, PilotRepository pilotRepository,
                            SpacecraftRepository spacecraftRepository, FlightRepository flightRepository,
-                           FlightPlanRepository flightPlanRepository) {
+                           FlightPlanRepository flightPlanRepository, TicketRepository ticketRepository) {
         return args -> {
 
-            // <======= CREATE (2) USER ROLE TYPES =======>
+            // <======= CREATE (2) USER-ROLE TYPES =======>
 
             // #1: Admin a.k.a. "Pilot"
             Role adminRole = roleRepository.findByRole(UserRoles.ADMIN);
@@ -48,7 +50,6 @@ public class IntergalacticTravelAgencyApplication {
                 userRole.setRole(UserRoles.PASSENGER);
                 roleRepository.save(userRole);
             }
-
 
             // <======= CREATE (6) PILOT (ADMIN) USERS =======>
 
@@ -184,7 +185,6 @@ public class IntergalacticTravelAgencyApplication {
                 pilotRepository.save(mChief);
             }
 
-
             // <======= CREATE (4) PASSENGER USERS =======>
 
             // #1: Leia Organa (Star Wars)
@@ -239,8 +239,7 @@ public class IntergalacticTravelAgencyApplication {
                 userRepository.save(aSkywalker);
             }
 
-
-            // <======= CREATE (20) SPACEPORTS ***
+            // <======= CREATE (20) SPACEPORTS =======>
 
             // #1: Coruscant (Star Wars)
             Spaceport coruscant = spaceportRepository.findByCode("SW-0001");
@@ -442,7 +441,6 @@ public class IntergalacticTravelAgencyApplication {
                 spaceportRepository.save(lv223);
             }
 
-
             // <======= CREATE (8) SPACECRAFTS + ADD TO APPROPRIATE PILOT USER'S FLEET =======>
 
             // #1: Rei Skywalker - (2) Spacecraft
@@ -471,7 +469,6 @@ public class IntergalacticTravelAgencyApplication {
                 rSkywalker.getSpacecrafts().add(rCruiser);
                 pilotRepository.save(rSkywalker);
             }
-
 
             // #2: Han Solo - (1) Spacecraft
             Spacecraft mFalcon = spacecraftRepository.findByCode("SC-0003");
@@ -567,8 +564,6 @@ public class IntergalacticTravelAgencyApplication {
                 jKirk.getSpacecrafts().add(ussEnterprise);
                 pilotRepository.save(jKirk);
             }
-
-
 
             // <======= CREATE (10) FLIGHTS =======>
 
@@ -702,8 +697,6 @@ public class IntergalacticTravelAgencyApplication {
                 flightRepository.save(flightJ);
             }
 
-
-
             // <======= CREATE (10) FLIGHT-PLANS =======>
 
             // #1: Flight-A - Departing: Today's Current Date
@@ -806,10 +799,72 @@ public class IntergalacticTravelAgencyApplication {
                 flightPlanRepository.save(flightPlanJ);
             }
 
-            // <======= CREATE (5) Tickets =======>
+            // <======= CREATE (5) TICKETS =======>
 
-            // TO-DO
+            // #1: Master Yoda - FlightPlan-B - Today's Current Date
+            if(flightPlanB.getAvailableSeats() > 0) {
+                Ticket ticket = new Ticket()
+                        .setCancellable(false)
+                        .setFlightDate(flightPlanB.getFlightDate())
+                        .setPassenger(yoda)
+                        .setFlightPlan(flightPlanB)
+                        .setSeatNumber((flightPlanB.getFlightDetail().getSpacecraft().getCapacity() - flightPlanB.getAvailableSeats()) + 1);
+                ticketRepository.save(ticket);
+                flightPlanB.setAvailableSeats(flightPlanB.getAvailableSeats() - 1);
+                flightPlanRepository.save(flightPlanB);
+            }
+
+            // #2: Leia Organa - FlightPlan-A - Today's Current Date
+            if(flightPlanA.getAvailableSeats() > 0) {
+                Ticket ticket = new Ticket()
+                        .setCancellable(false)
+                        .setFlightDate(flightPlanA.getFlightDate())
+                        .setPassenger(lOrgana)
+                        .setFlightPlan(flightPlanA)
+                        .setSeatNumber((flightPlanA.getFlightDetail().getSpacecraft().getCapacity() - flightPlanA.getAvailableSeats()) + 1);
+                ticketRepository.save(ticket);
+                flightPlanA.setAvailableSeats(flightPlanA.getAvailableSeats() - 1);
+                flightPlanRepository.save(flightPlanA);
+            }
+
+            // #3: Anakin Skywalker - FlightPlan-A - Today's Current Date
+            if(flightPlanA.getAvailableSeats() > 0) {
+                Ticket ticket = new Ticket()
+                        .setCancellable(false)
+                        .setFlightDate(flightPlanA.getFlightDate())
+                        .setPassenger(aSkywalker)
+                        .setFlightPlan(flightPlanA)
+                        .setSeatNumber((flightPlanA.getFlightDetail().getSpacecraft().getCapacity() - flightPlanA.getAvailableSeats()) + 1);
+                ticketRepository.save(ticket);
+                flightPlanA.setAvailableSeats(flightPlanA.getAvailableSeats() - 1);
+                flightPlanRepository.save(flightPlanA);
+            }
+
+            // #4: Nyota Uhura - FlightPlan-D - Today's Current Date
+            if(flightPlanD.getAvailableSeats() > 0) {
+                Ticket ticket = new Ticket()
+                        .setCancellable(false)
+                        .setFlightDate(flightPlanD.getFlightDate())
+                        .setPassenger(nUhura)
+                        .setFlightPlan(flightPlanD)
+                        .setSeatNumber((flightPlanD.getFlightDetail().getSpacecraft().getCapacity() - flightPlanD.getAvailableSeats()) + 1);
+                ticketRepository.save(ticket);
+                flightPlanD.setAvailableSeats(flightPlanD.getAvailableSeats() - 1);
+                flightPlanRepository.save(flightPlanD);
+            }
+
+            // #5: Nyota Uhura - FlightPlan-G - Today's Current Date
+            if(flightPlanG.getAvailableSeats() > 0) {
+                Ticket ticket = new Ticket()
+                        .setCancellable(false)
+                        .setFlightDate(flightPlanG.getFlightDate())
+                        .setPassenger(nUhura)
+                        .setFlightPlan(flightPlanG)
+                        .setSeatNumber((flightPlanG.getFlightDetail().getSpacecraft().getCapacity() - flightPlanG.getAvailableSeats()) + 1);
+                ticketRepository.save(ticket);
+                flightPlanG.setAvailableSeats(flightPlanG.getAvailableSeats() - 1);
+                flightPlanRepository.save(flightPlanG);
+            }
         };
     }
 }
-

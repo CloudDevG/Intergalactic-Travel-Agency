@@ -1,6 +1,5 @@
 package com.clouddevg.ita;
 
-import com.clouddevg.ita.dto.mapper.TicketMapper;
 import com.clouddevg.ita.entity.flight.*;
 import com.clouddevg.ita.entity.user.Role;
 import com.clouddevg.ita.entity.user.User;
@@ -16,7 +15,6 @@ import org.springframework.context.annotation.Bean;
 
 import java.util.Arrays;
 import java.util.HashSet;
-import java.util.Optional;
 import java.util.Set;
 
 @SpringBootApplication
@@ -54,24 +52,24 @@ public class IntergalacticTravelAgencyApplication {
             // <======= CREATE (6) PILOT (ADMIN) USERS =======>
 
             // #1: Rei Skywalker (Star Wars)
-            User reiSkywalker = userRepository.findByEmail("rei.skywalker@ita.com");
-            if (reiSkywalker == null) {
-                reiSkywalker = new User()
-                        .setEmail("rei.skywalker@ita.com")
-                        .setPassword("$2a$10$Wfvx5dQ3LpvnH/jAfkiWeuL/K43dEN2xCE53eSqz1lW5K17U30vkm") // "123456"
-                        .setFirstName("Rei")
+            User reySkywalker = userRepository.findByEmail("rey.skywalker@ita.com");
+            if (reySkywalker == null) {
+                reySkywalker = new User()
+                        .setEmail("rey.skywalker@ita.com")
+                        .setPassword("$2a$10$0vEy00JIQJeuar/YZFDsCuuxHK9WQpOuMDqi.3gGsp./VLGX4eUKa") // "Password1234"
+                        .setFirstName("Rey")
                         .setLastName("Skywalker")
                         .setMobileNumber("9425094250")
                         .setRoles(Arrays.asList(adminRole));
-                userRepository.save(reiSkywalker);
+                userRepository.save(reySkywalker);
             }
             Pilot rSkywalker = pilotRepository.findByCode("P-0001");
             if (rSkywalker == null) {
                 rSkywalker = new Pilot()
-                        .setName("Rei Skywalker")
+                        .setName("Rey Skywalker")
                         .setCode("P-0001")
                         .setDetails("May The Force Be With You")
-                        .setOwner(reiSkywalker);
+                        .setOwner(reySkywalker);
                 pilotRepository.save(rSkywalker);
             }
 
@@ -80,7 +78,7 @@ public class IntergalacticTravelAgencyApplication {
             if (hanSolo == null) {
                 hanSolo = new User()
                         .setEmail("han.solo@ita.com")
-                        .setPassword("$2a$10$Wfvx5dQ3LpvnH/jAfkiWeuL/K43dEN2xCE53eSqz1lW5K17U30vkm") // "123456"
+                        .setPassword("$2a$10$0vEy00JIQJeuar/YZFDsCuuxHK9WQpOuMDqi.3gGsp./VLGX4eUKa") // "Password1234"
                         .setFirstName("Han")
                         .setLastName("Solo")
                         .setMobileNumber("7659021456")
@@ -102,7 +100,7 @@ public class IntergalacticTravelAgencyApplication {
             if (padmeAmidala == null) {
                 padmeAmidala = new User()
                         .setEmail("padme.amidala@ita.com")
-                        .setPassword("$2a$10$Wfvx5dQ3LpvnH/jAfkiWeuL/K43dEN2xCE53eSqz1lW5K17U30vkm") // "123456"
+                        .setPassword("$2a$10$0vEy00JIQJeuar/YZFDsCuuxHK9WQpOuMDqi.3gGsp./VLGX4eUKa") // "Password1234"
                         .setFirstName("Padme")
                         .setLastName("Amidala")
                         .setMobileNumber("2316758960")
@@ -124,7 +122,7 @@ public class IntergalacticTravelAgencyApplication {
             if (jamesKirk == null) {
                 jamesKirk = new User()
                         .setEmail("james.kirk@ita.com")
-                        .setPassword("$2a$10$Wfvx5dQ3LpvnH/jAfkiWeuL/K43dEN2xCE53eSqz1lW5K17U30vkm") // "123456"
+                        .setPassword("$2a$10$0vEy00JIQJeuar/YZFDsCuuxHK9WQpOuMDqi.3gGsp./VLGX4eUKa") // "Password1234"
                         .setFirstName("James")
                         .setLastName("Kirk")
                         .setMobileNumber("3473216190")
@@ -146,7 +144,7 @@ public class IntergalacticTravelAgencyApplication {
             if (elizabethShaw == null) {
                 elizabethShaw = new User()
                         .setEmail("elizabeth.shaw@ita.com")
-                        .setPassword("$2a$10$Wfvx5dQ3LpvnH/jAfkiWeuL/K43dEN2xCE53eSqz1lW5K17U30vkm") // "123456"
+                        .setPassword("$2a$10$0vEy00JIQJeuar/YZFDsCuuxHK9WQpOuMDqi.3gGsp./VLGX4eUKa") // "Password1234"
                         .setFirstName("Elizabeth")
                         .setLastName("Shaw")
                         .setMobileNumber("9036127213")
@@ -168,7 +166,7 @@ public class IntergalacticTravelAgencyApplication {
             if (masterChief == null) {
                 masterChief = new User()
                         .setEmail("master.chief@ita.com")
-                        .setPassword("$2a$10$Wfvx5dQ3LpvnH/jAfkiWeuL/K43dEN2xCE53eSqz1lW5K17U30vkm") // "123456"
+                        .setPassword("$2a$10$0vEy00JIQJeuar/YZFDsCuuxHK9WQpOuMDqi.3gGsp./VLGX4eUKa") // "Password1234"
                         .setFirstName("John")
                         .setLastName("117")
                         .setMobileNumber("7543902156")
@@ -192,7 +190,7 @@ public class IntergalacticTravelAgencyApplication {
             if (lOrgana == null) {
                 lOrgana = new User()
                         .setEmail("leia.organa@starwars.com")
-                        .setPassword("$2a$10$Wfvx5dQ3LpvnH/jAfkiWeuL/K43dEN2xCE53eSqz1lW5K17U30vkm") // "123456"
+                        .setPassword("$2a$10$0vEy00JIQJeuar/YZFDsCuuxHK9WQpOuMDqi.3gGsp./VLGX4eUKa") // "Password1234"
                         .setFirstName("Leia")
                         .setLastName("Organa")
                         .setMobileNumber("7879084312")
@@ -205,7 +203,7 @@ public class IntergalacticTravelAgencyApplication {
             if (yoda == null) {
                 yoda = new User()
                         .setEmail("master.yoda@starwars.com")
-                        .setPassword("$2a$10$Wfvx5dQ3LpvnH/jAfkiWeuL/K43dEN2xCE53eSqz1lW5K17U30vkm") // "123456"
+                        .setPassword("$2a$10$0vEy00JIQJeuar/YZFDsCuuxHK9WQpOuMDqi.3gGsp./VLGX4eUKa") // "Password1234"
                         .setFirstName("Master")
                         .setLastName("Yoda")
                         .setMobileNumber("3057214509")
@@ -218,7 +216,7 @@ public class IntergalacticTravelAgencyApplication {
             if (nUhura == null) {
                 nUhura = new User()
                         .setEmail("nyota.uhura@startrek.com")
-                        .setPassword("$2a$10$Wfvx5dQ3LpvnH/jAfkiWeuL/K43dEN2xCE53eSqz1lW5K17U30vkm") // "123456"
+                        .setPassword("$2a$10$0vEy00JIQJeuar/YZFDsCuuxHK9WQpOuMDqi.3gGsp./VLGX4eUKa") // "Password1234"
                         .setFirstName("Nyota")
                         .setLastName("Uhura")
                         .setMobileNumber("9015184108")
@@ -231,7 +229,7 @@ public class IntergalacticTravelAgencyApplication {
             if (aSkywalker == null) {
                 aSkywalker = new User()
                         .setEmail("anakin.skywalker@starwars.com")
-                        .setPassword("$2a$10$Wfvx5dQ3LpvnH/jAfkiWeuL/K43dEN2xCE53eSqz1lW5K17U30vkm") // "123456"
+                        .setPassword("$2a$10$0vEy00JIQJeuar/YZFDsCuuxHK9WQpOuMDqi.3gGsp./VLGX4eUKa") // "Password1234"
                         .setFirstName("Anakin")
                         .setLastName("Skywalker")
                         .setMobileNumber("5058741294")

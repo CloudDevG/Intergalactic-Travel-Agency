@@ -31,7 +31,7 @@ public class IntergalacticTravelAgencyApplication {
                            FlightPlanRepository flightPlanRepository, TicketRepository ticketRepository) {
         return args -> {
 
-            // <======= CREATE (2) USER-ROLE TYPES =======>
+            // <=======|--- CREATE (2) USER-ROLE TYPES ---|=======>
 
             // #1: Admin a.k.a. "Pilot"
             Role adminRole = roleRepository.findByRole(UserRoles.ADMIN);
@@ -49,7 +49,7 @@ public class IntergalacticTravelAgencyApplication {
                 roleRepository.save(userRole);
             }
 
-            // <======= CREATE (6) PILOT (ADMIN) USERS =======>
+            // <=======|--- CREATE (6) PILOT (ADMIN) USERS ---|=======>
 
             // #1: Rei Skywalker (Star Wars)
             User reySkywalker = userRepository.findByEmail("rey.skywalker@ita.com");
@@ -68,7 +68,7 @@ public class IntergalacticTravelAgencyApplication {
                 rSkywalker = new Pilot()
                         .setName("Rey Skywalker")
                         .setCode("P-0001")
-                        .setDetails("May The Force Be With You")
+                        .setDetails("May The Force Be With You :)")
                         .setOwner(reySkywalker);
                 pilotRepository.save(rSkywalker);
             }
@@ -90,7 +90,7 @@ public class IntergalacticTravelAgencyApplication {
                 hSolo = new Pilot()
                         .setName("Han Solo")
                         .setCode("P-0002")
-                        .setDetails("I got a bad feeling about this.....")
+                        .setDetails("I got a bad feeling about this...")
                         .setOwner(hanSolo);
                 pilotRepository.save(hSolo);
             }
@@ -134,7 +134,7 @@ public class IntergalacticTravelAgencyApplication {
                 jKirk = new Pilot()
                         .setName("Capt. James T. Kirk")
                         .setCode("P-0004")
-                        .setDetails("Space: The Final Frontier....")
+                        .setDetails("Space: The Final Frontier...")
                         .setOwner(jamesKirk);
                 pilotRepository.save(jKirk);
             }
@@ -156,7 +156,7 @@ public class IntergalacticTravelAgencyApplication {
                 eShaw = new Pilot()
                         .setName("Dr. Elizabeth Shaw")
                         .setCode("P-0005")
-                        .setDetails("On a Quest To Find Our Origins Amongst The Stars")
+                        .setDetails("On A Quest To Find Our Origins Amongst The Stars")
                         .setOwner(elizabethShaw);
                 pilotRepository.save(eShaw);
             }
@@ -183,7 +183,7 @@ public class IntergalacticTravelAgencyApplication {
                 pilotRepository.save(mChief);
             }
 
-            // <======= CREATE (4) PASSENGER USERS =======>
+            // <=======|--- CREATE (4) PASSENGER USERS ---|=======>
 
             // #1: Leia Organa (Star Wars)
             User lOrgana = userRepository.findByEmail("leia.organa@starwars.com");
@@ -224,27 +224,27 @@ public class IntergalacticTravelAgencyApplication {
                 userRepository.save(nUhura);
             }
 
-            // #4: Anakin Skywalker (Star Wars)
-            User aSkywalker = userRepository.findByEmail("anakin.skywalker@starwars.com");
-            if (aSkywalker == null) {
-                aSkywalker = new User()
-                        .setEmail("anakin.skywalker@starwars.com")
+            // #4: Obi-Wan Kenobi (Star Wars)
+            User oKenobi = userRepository.findByEmail("obiwan.kenobi@starwars.com");
+            if (oKenobi == null) {
+                oKenobi = new User()
+                        .setEmail("obiwan.kenobi@starwars.com")
                         .setPassword("$2a$10$0vEy00JIQJeuar/YZFDsCuuxHK9WQpOuMDqi.3gGsp./VLGX4eUKa") // "Password1234"
-                        .setFirstName("Anakin")
-                        .setLastName("Skywalker")
+                        .setFirstName("Obi-Wan")
+                        .setLastName("Kenobi")
                         .setMobileNumber("5058741294")
                         .setRoles(Arrays.asList(userRole));
-                userRepository.save(aSkywalker);
+                userRepository.save(oKenobi);
             }
 
-            // <======= CREATE (20) SPACEPORTS =======>
+            // <=======|--- CREATE (20) SPACEPORTS ---|=======>
 
             // #1: Coruscant (Star Wars)
             Spaceport coruscant = spaceportRepository.findByCode("SW-0001");
             if (coruscant == null) {
                 coruscant = new Spaceport()
                         .setName("Coruscant")
-                        .setDetail("Home of the Jedi Temple and Intergalactic Republic")
+                        .setDetail("Home Of The Jedi Temple and Intergalactic Republic")
                         .setCode("SW-0001");
                 spaceportRepository.save(coruscant);
             }
@@ -254,7 +254,7 @@ public class IntergalacticTravelAgencyApplication {
             if (tatooine == null) {
                 tatooine = new Spaceport()
                         .setName("Tatooine")
-                        .setDetail("Home of Luke Skywalker and Mo's Cantina")
+                        .setDetail("Childhood Home Of Luke Skywalker and The Famous Mo's Cantina")
                         .setCode("SW-0002");
                 spaceportRepository.save(tatooine);
             }
@@ -264,7 +264,7 @@ public class IntergalacticTravelAgencyApplication {
             if (naboo == null) {
                 naboo = new Spaceport()
                         .setName("Naboo")
-                        .setDetail("Home of the Amidala Clan")
+                        .setDetail("Home Of The Amidala Clan and Some Of The Most Beautiful Sights To Behold In The Galaxy")
                         .setCode("SW-0003");
                 spaceportRepository.save(naboo);
             }
@@ -274,7 +274,7 @@ public class IntergalacticTravelAgencyApplication {
             if (kashyyyk == null) {
                 kashyyyk = new Spaceport()
                         .setName("Kashyyyk")
-                        .setDetail("Home of Chewbacca & The Wookies")
+                        .setDetail("Home Of The Legendary Chewbacca and The Wookies")
                         .setCode("SW-0004");
                 spaceportRepository.save(kashyyyk);
             }
@@ -284,7 +284,7 @@ public class IntergalacticTravelAgencyApplication {
             if (kamino == null) {
                 kamino = new Spaceport()
                         .setName("Kamino")
-                        .setDetail("Home of the Kaminoan people, Jango Fett, and the Republic's Clone Army")
+                        .setDetail("Home Of The Kaminoan people, Jango Fett, and The Republic's Clone Army")
                         .setCode("SW-0005");
                 spaceportRepository.save(kamino);
             }
@@ -294,7 +294,7 @@ public class IntergalacticTravelAgencyApplication {
             if (batuu == null) {
                 batuu = new Spaceport()
                         .setName("Batuu")
-                        .setDetail("A Remote Planet in the Outer Rim and Home To The Ancients")
+                        .setDetail("A Remote Planet In The Outer Rim and Home To The Ancients")
                         .setCode("SW-0006");
                 spaceportRepository.save(batuu);
             }
@@ -304,7 +304,7 @@ public class IntergalacticTravelAgencyApplication {
             if (hoth == null) {
                 hoth = new Spaceport()
                         .setName("Hoth")
-                        .setDetail("A Frozen Tundra and a Famous Battle-Site between The Empire and Rebellion")
+                        .setDetail("A Frozen Tundra and Famous Battle-Site Between The Galactic Empire and Rebellion")
                         .setCode("SW-0007");
                 spaceportRepository.save(hoth);
             }
@@ -314,7 +314,7 @@ public class IntergalacticTravelAgencyApplication {
             if (endor == null) {
                 endor = new Spaceport()
                         .setName("Endor")
-                        .setDetail("Home of Ewoks and the site of the collapse of the Galactic Empire")
+                        .setDetail("Home Of The Ewoks and The Site Of The Collapse Of The Galactic Empire")
                         .setCode("SW-0008");
                 spaceportRepository.save(endor);
             }
@@ -324,7 +324,7 @@ public class IntergalacticTravelAgencyApplication {
             if (earth == null) {
                 earth = new Spaceport()
                         .setName("Earth")
-                        .setDetail("Home of Humanity, Starfleet's HQ, and ITA's primary spaceport")
+                        .setDetail("Beautiful Home Of Humanity, Starfleet's HQ, and ITA's Primary Spaceport")
                         .setCode("ST-0001");
                 spaceportRepository.save(earth);
             }
@@ -334,7 +334,7 @@ public class IntergalacticTravelAgencyApplication {
             if (neptune == null) {
                 neptune = new Spaceport()
                         .setName("Neptune")
-                        .setDetail("Home to the Soon-To-Be Opened Hotel/Resort: 'The Glass Ocean'")
+                        .setDetail("The Milky Way's Oceanfront Planet and Home To The Soon-To-Be Opened Hotel/Resort: 'The Glass Ocean'")
                         .setCode("ST-0002");
                 spaceportRepository.save(neptune);
             }
@@ -344,7 +344,7 @@ public class IntergalacticTravelAgencyApplication {
             if (mars == null) {
                 mars = new Spaceport()
                         .setName("Mars")
-                        .setDetail("The 2nd Largest Planet in Human Population and Starfleet's Base For Long Range Missions")
+                        .setDetail("The 2nd Largest Planet In Human Population Amongst The Stars and Starfleet's Base For Long Range Missions")
                         .setCode("ST-0003");
                 spaceportRepository.save(mars);
             }
@@ -354,7 +354,7 @@ public class IntergalacticTravelAgencyApplication {
             if (moon == null) {
                 moon = new Spaceport()
                         .setName("Moon")
-                        .setDetail("Humanity's First Interstellar Journey and Home to the Armstrong, Aldrin, and Collins Museum")
+                        .setDetail("Humanity's First Interstellar Journey and Home To The 'Armstrong, Aldrin, and Collins' Museum")
                         .setCode("ST-0004");
                 spaceportRepository.save(moon);
             }
@@ -364,7 +364,7 @@ public class IntergalacticTravelAgencyApplication {
             if (risa == null) {
                 risa = new Spaceport()
                         .setName("Risa")
-                        .setDetail("The Infamous Beach and Ocean Home to the Risians")
+                        .setDetail("The Infamous Beach and Ocean Home To The Risians")
                         .setCode("ST-0005");
                 spaceportRepository.save(risa);
             }
@@ -374,7 +374,7 @@ public class IntergalacticTravelAgencyApplication {
             if (cybertron == null) {
                 cybertron = new Spaceport()
                         .setName("Cybertron")
-                        .setDetail("The Home to AutoBots, Decepticons, and Legendary Hero: Optimus Prime")
+                        .setDetail("The Home To The AutoBots, Decepticons, and Our Legendary + Timeless Hero: 'Optimus Prime'")
                         .setCode("TR-0001");
                 spaceportRepository.save(cybertron);
             }
@@ -384,7 +384,7 @@ public class IntergalacticTravelAgencyApplication {
             if (pandora == null) {
                 pandora = new Spaceport()
                         .setName("Pandora")
-                        .setDetail("The Home to the Na'vi People and The Tree of Souls")
+                        .setDetail("The Home To The Na'vi People and The Tree Of Souls")
                         .setCode("AV-0001");
                 spaceportRepository.save(pandora);
             }
@@ -394,7 +394,7 @@ public class IntergalacticTravelAgencyApplication {
             if (theReach == null) {
                 theReach = new Spaceport()
                         .setName("The Reach")
-                        .setDetail("The Previous Home of The Forerunners and UNSC Powerhouse Base")
+                        .setDetail("The Previous Home Of The Forerunners and Former UNSC Powerhouse Base")
                         .setCode("HA-0001");
                 spaceportRepository.save(theReach);
             }
@@ -404,7 +404,7 @@ public class IntergalacticTravelAgencyApplication {
             if (haloArray == null) {
                 haloArray = new Spaceport()
                         .setName("The Halo Array")
-                        .setDetail("A Network of (7) Ring-Shaped Artificial Worlds Created by The Forerunners")
+                        .setDetail("A Network Of (7) Ring-Shaped Artificial Worlds Created By The Forerunners")
                         .setCode("HA-0002");
                 spaceportRepository.save(haloArray);
             }
@@ -414,7 +414,7 @@ public class IntergalacticTravelAgencyApplication {
             if (caladan == null) {
                 caladan = new Spaceport()
                         .setName("Caladan")
-                        .setDetail("The Lush Oceanic Home World of House Atreides")
+                        .setDetail("The Lush Oceanic Home World Of House Atreides")
                         .setCode("DU-0001");
                 spaceportRepository.save(caladan);
             }
@@ -424,7 +424,7 @@ public class IntergalacticTravelAgencyApplication {
             if (arrakis == null) {
                 arrakis = new Spaceport()
                         .setName("Arrakis")
-                        .setDetail("A Harsh Desert Planet, Known for Being the Universe's Single Source for Spice Melange")
+                        .setDetail("A Harsh Desert Planet, Known For Being The Universe's Single Source For Spice Melange")
                         .setCode("DU-0002");
                 spaceportRepository.save(arrakis);
             }
@@ -434,12 +434,12 @@ public class IntergalacticTravelAgencyApplication {
             if (lv223 == null) {
                 lv223 = new Spaceport()
                         .setName("LV-223")
-                        .setDetail("An Abandoned Military-Base Planet belonging to the Engineers")
+                        .setDetail("An Abandoned Military-Base Planet Belonging To The Engineers, Please Visit @ Your Own Risk")
                         .setCode("AP-0001");
                 spaceportRepository.save(lv223);
             }
 
-            // <======= CREATE (8) SPACECRAFTS + ADD TO APPROPRIATE PILOT USER'S FLEET =======>
+            // <=======|--- CREATE (8) SPACECRAFTS + ADD TO APPROPRIATE PILOT USER'S FLEET ---|=======>
 
             // #1: Rei Skywalker - (2) Spacecraft
             Spacecraft iShuttle = spacecraftRepository.findByCode("SC-0001");
@@ -457,7 +457,7 @@ public class IntergalacticTravelAgencyApplication {
                         .setCode("SC-0002")
                         .setPilot(rSkywalker)
                         .setCapacity(150)
-                        .setMake("Nebulon-B Frigate");
+                        .setMake("Nebulon-B Class Rebellion Frigate");
                 spacecraftRepository.save(rCruiser);
             }
             if (rSkywalker.getSpacecrafts() == null) {
@@ -563,7 +563,7 @@ public class IntergalacticTravelAgencyApplication {
                 pilotRepository.save(jKirk);
             }
 
-            // <======= CREATE (10) FLIGHTS =======>
+            // <=======|--- CREATE (10) FLIGHTS ---|=======>
 
             // #1: Coruscant to Naboo - P.Amidala (Naboo Royal Starship)
             Flight flightA = flightRepository.findByOriginSpaceportAndDestinationSpaceportAndSpacecraft(coruscant, naboo, nCrusier);
@@ -695,7 +695,7 @@ public class IntergalacticTravelAgencyApplication {
                 flightRepository.save(flightJ);
             }
 
-            // <======= CREATE (10) FLIGHT-PLANS =======>
+            // <=======|--- CREATE (10) FLIGHT-PLANS ---|=======>
 
             // #1: Flight-A - Departing: Today's Current Date
             FlightPlan flightPlanA = flightPlanRepository.findByFlightDetailAndFlightDate(flightA, DateUtils.todayStr());
@@ -797,7 +797,7 @@ public class IntergalacticTravelAgencyApplication {
                 flightPlanRepository.save(flightPlanJ);
             }
 
-            // <======= CREATE (5) TICKETS =======>
+            // <=======|--- CREATE (5) TICKETS ---|=======>
 
             // #1: Master Yoda - FlightPlan-B - Today's Current Date
             if(flightPlanB.getAvailableSeats() > 0) {
@@ -825,12 +825,12 @@ public class IntergalacticTravelAgencyApplication {
                 flightPlanRepository.save(flightPlanA);
             }
 
-            // #3: Anakin Skywalker - FlightPlan-A - Today's Current Date
+            // #3: Obi-Wan Kenobi - FlightPlan-A - Today's Current Date
             if(flightPlanA.getAvailableSeats() > 0) {
                 Ticket ticket = new Ticket()
                         .setCancellable(false)
                         .setFlightDate(flightPlanA.getFlightDate())
-                        .setPassenger(aSkywalker)
+                        .setPassenger(oKenobi)
                         .setFlightPlan(flightPlanA)
                         .setSeatNumber((flightPlanA.getFlightDetail().getSpacecraft().getCapacity() - flightPlanA.getAvailableSeats()) + 1);
                 ticketRepository.save(ticket);

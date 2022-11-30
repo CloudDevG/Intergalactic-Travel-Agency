@@ -1,27 +1,3 @@
-/*
-Template Name: Material Pro Admin
-Author: Themedesigner
-Email: niravjoshi87@gmail.com
-File: scss
-*/
-/**
- * Table Of Content
- *
- * 	1. Globals
- *	2. Headers
- *	3. Navigations
- *	4. Banners
- *	5. Footers
- *	6. app
- *	7. Widgets
- *	8. Custom Templates
- */
-/*
-Template Name: Material Pro Admin
-Author: Themedesigner
-Email: niravjoshi87@gmail.com
-File: scss
-*/
 @import url("https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700");
 /*Theme Colors*/
 /*bootstrap Color*/
@@ -51,24 +27,6 @@ File: scss
     top: calc(50% - 3.5px);
     left: calc(50% - 3.5px); }
 
-/*
-Template Name: Material Pro Admin
-Author: Themedesigner
-Email: niravjoshi87@gmail.com
-File: scss
-*/
-/**
- * Table Of Content
- *
- * 	1. Globals
- *	2. Headers
- *	3. Navigations
- *	4. Banners
- *	5. Footers
- *	6. Posts
- *	7. Widgets
- *	8. Custom Templates
- */
 /******************* 
 Global Styles 
 *******************/
@@ -997,8 +955,8 @@ Buttons
 
 .btn-success,
 .btn-success.disabled {
-  background: #26c6da;
-  border: 1px solid #26c6da;
+  background: #c49514;
+  border: 1px solid #c49514;
   -webkit-box-shadow: 0 2px 2px 0 rgba(40, 190, 189, 0.14), 0 3px 1px -2px rgba(40, 190, 189, 0.2), 0 1px 5px 0 rgba(40, 190, 189, 0.12);
   box-shadow: 0 2px 2px 0 rgba(40, 190, 189, 0.14), 0 3px 1px -2px rgba(40, 190, 189, 0.2), 0 1px 5px 0 rgba(40, 190, 189, 0.12);
   -webkit-transition: 0.2s ease-in;
@@ -1006,10 +964,10 @@ Buttons
   transition: 0.2s ease-in; }
   .btn-success:hover,
   .btn-success.disabled:hover {
-    background: #26c6da;
+    background: #c49514;
     -webkit-box-shadow: 0 14px 26px -12px rgba(40, 190, 189, 0.42), 0 4px 23px 0 rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(40, 190, 189, 0.2);
     box-shadow: 0 14px 26px -12px rgba(40, 190, 189, 0.42), 0 4px 23px 0 rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(40, 190, 189, 0.2);
-    border: 1px solid #26c6da; }
+    border: 1px solid #c49514; }
   .btn-success.active, .btn-success:focus,
   .btn-success.disabled.active,
   .btn-success.disabled:focus {
@@ -1149,17 +1107,17 @@ Buttons
     box-shadow: 0 14px 26px -12px rgba(116, 96, 238, 0.42), 0 4px 23px 0 rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(116, 96, 238, 0.2); }
 
 .btn-outline-success {
-  color: #26c6da;
+  color: #c49514;
   background-color: transparent;
-  border-color: #26c6da;
+  border-color: #c49514;
   -webkit-box-shadow: 0 2px 2px 0 rgba(40, 190, 189, 0.14), 0 3px 1px -2px rgba(40, 190, 189, 0.2), 0 1px 5px 0 rgba(40, 190, 189, 0.12);
   box-shadow: 0 2px 2px 0 rgba(40, 190, 189, 0.14), 0 3px 1px -2px rgba(40, 190, 189, 0.2), 0 1px 5px 0 rgba(40, 190, 189, 0.12);
   -webkit-transition: 0.2s ease-in;
   -o-transition: 0.2s ease-in;
   transition: 0.2s ease-in; }
   .btn-outline-success:hover, .btn-outline-success:focus, .btn-outline-success.focus {
-    background: #26c6da;
-    border-color: #26c6da;
+    background: #c49514;
+    border-color: #c49514;
     color: #ffffff;
     -webkit-box-shadow: 0 14px 26px -12px rgba(40, 190, 189, 0.42), 0 4px 23px 0 rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(40, 190, 189, 0.2);
     box-shadow: 0 14px 26px -12px rgba(40, 190, 189, 0.42), 0 4px 23px 0 rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(40, 190, 189, 0.2); }
@@ -1565,8 +1523,8 @@ Checkbox
   color: #ffffff; }
 
 .checkbox-success input[type="checkbox"]:checked + label::before {
-  background-color: #26c6da;
-  border-color: #26c6da; }
+  background-color: #c49514;
+  border-color: #c49514; }
 
 .checkbox-success input[type="checkbox"]:checked + label::after {
   color: #ffffff; }
@@ -1902,15 +1860,7 @@ Layouts
   max-width: 1170px;
   margin: 0 auto; }
 
-/*
-Template Name: Material Pro Admin
-Author: Themedesigner
-Email: niravjoshi87@gmail.com
-File: scss
-*/
-/*============================================================== 
- For all pages 
- ============================================================== */
+
 #main-wrapper {
   width: 100%; }
 

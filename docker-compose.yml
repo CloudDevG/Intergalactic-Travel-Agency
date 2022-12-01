@@ -9,7 +9,7 @@ services:
     ports:
       - 3306:3306
     environment:
-      - MYSQL_ROOT_PASSWORD=EpsilonSigmaAlpha
+      - MYSQL_ROOT_PASSWORD=SuperSecretPasswordJustForAdmin!
       - MYSQL_DATABASE=ita_db
       - MYSQL_USER=ita-user
       - MYSQL_PASSWORD=EpsilonSigmaAlpha

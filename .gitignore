@@ -1,5 +1,8 @@
 HELP.md
 
+### Database ###
+db/*
+
 ### IntelliJ IDEA ###
 .idea
 *.iws

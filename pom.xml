@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.clouddevg.ita</groupId>
     <artifactId>intergalactic-travel-agency</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0</version>
     <name>intergalactic-travel-agency</name>
     <description>intergalactic-travel-agency</description>
     <properties>

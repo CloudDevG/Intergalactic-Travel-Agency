@@ -1,0 +1,32 @@
+version: '3.8'
+services:
+  mysql:
+    image: mysql:latest
+    restart: always
+    container_name: "mysql"
+    volumes:
+      - "./db:/var/lib/mysql"
+    ports:
+      - 3306:3306
+    environment:
+      - MYSQL_ROOT_PASSWORD=EpsilonSigmaAlpha
+      - MYSQL_DATABASE=ita_db
+      - MYSQL_USER=ita-user
+      - MYSQL_PASSWORD=EpsilonSigmaAlpha
+  web:
+    build: .
+    links:
+      - mysql
+    container_name: ITA-Service
+    restart: on-failure
+    ports:
+      - "8080:8080"
+    environment:
+      - DB_PORT=3306
+      - DB_NAME=ita_db
+      - DB_HOST=mysql
+      - MYSQL_USER=ita-user
+      - MYSQL_USER_PASSWORD=EpsilonSigmaAlpha
+      - SPRING_PROFILES_ACTIVE=prod
+    depends_on:
+      - mysql

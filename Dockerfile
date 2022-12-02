@@ -1,4 +1,4 @@
-# Base Build Image
+# Build Stage 1: Base Image
 FROM maven:3.8.6-eclipse-temurin-19 as maven
 
 # Copying Over Project Files
@@ -13,7 +13,7 @@ COPY ./src ./src
 # Build For Release
 RUN mvn package -DskipTests
 
-# Final Base Build Image
+# Build Stage 2: Final Image
 FROM eclipse-temurin:19-jre-alpine
 
 # Setting Deployment Directory
